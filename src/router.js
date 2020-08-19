@@ -1,20 +1,20 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-// import Top from './components/Top.vue';
-// import Hage from './components/Hage.vue';
-// import Hoge from './components/Hoge.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter);
+import Home from '@/components/Home.vue'
+import About from '@/components/About.vue'
+Vue.use(Router)
 
-const routes = [
-    { path: '/', component: HelloWorld },
-    // { path: '/hage', component: Hage },
-    // { path: '/hoge', component: Hoge },
-];
-
-const router = new VueRouter({
-    routes,
-    mode: 'history'
-});
-
-export default router;
+export default new Router({
+  mode: 'history',
+  routes: [
+    { 
+      path: '/',
+      component: Home
+    },
+    {
+      path: '/about',
+      component: About
+    }
+  ]
+})
