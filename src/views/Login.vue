@@ -1,7 +1,31 @@
 <template>
-  <div class="login container">
-    <h2 class="has-text-left">
-      Login
-    </h2>
-  </div>
+  <v-container>
+    <v-card>
+      <v-card-title>
+        Login
+      </v-card-title>
+      <v-card-text>
+        <v-form>
+          <v-text-field
+            v-model="name"
+            :counter="10"
+            label="name"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="password"
+            :counter="10"
+            label="password"
+            required
+          ></v-text-field>
+          <v-btn
+            class="mr-4"
+            @click="submit"
+          >
+            Login
+          </v-btn>
+        </v-form>
+      </v-card-text>
+    </v-card>
+  </v-container>
 </template>
