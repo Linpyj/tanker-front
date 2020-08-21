@@ -1,5 +1,7 @@
 <template>
   <div class="login">
-    Login Page
+    <h2 class="has-text-left">
+      Login Page
+    </h2>
   </div>
 </template>
