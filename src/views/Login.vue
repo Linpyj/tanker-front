@@ -1,7 +1,7 @@
 <template>
-  <div class="login">
+  <div class="login container">
     <h2 class="has-text-left">
-      Login Page
+      Login
     </h2>
   </div>
 </template>
