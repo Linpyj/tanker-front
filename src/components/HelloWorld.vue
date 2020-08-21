@@ -88,6 +88,16 @@
         </v-row>
       </v-col>
     </v-row>
+    <v-flex md-4 xs12>
+        <v-sheet height="300">
+          <v-calendar
+            type="month"
+            now="2019-11-01"
+            value="2019-11-01"
+            :events="events"
+          ></v-calendar>
+        </v-sheet>
+    </v-flex>
   </v-container>
 </template>
 
