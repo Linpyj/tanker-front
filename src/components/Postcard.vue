@@ -8,7 +8,7 @@
                         {{ item.content }}
                     </v-card-text>
                     <div class="has-text-centered">
-                        <p>{{ item.created_at }}</p>
+                        <p>{{ item.created_at }}</p><font-awesome-icon :icon="['far','heart']" />
                     </div>
                 </v-card>
             </v-col>
