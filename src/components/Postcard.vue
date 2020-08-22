@@ -1,19 +1,32 @@
 <template>
-    <v-container>
-        <v-row justify="center">
-            <v-col cols="7">
-                <v-card>
-                    <v-card-title></v-card-title>
-                    <v-card-text class="headline font-weight-bold">
-                        {{ item.content }}
-                    </v-card-text>
-                    <div class="has-text-centered">
-                        <p>{{ item.created_at }}</p><font-awesome-icon :icon="['far','heart']" />
-                    </div>
-                </v-card>
-            </v-col>
-        </v-row>
-    </v-container>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="7">
+        <v-card
+          outlined
+        >
+          <v-card-text class="headline">
+            {{ item.content }}
+          </v-card-text>
+          
+          <v-card-actions>
+            <v-btn text icon color="lighten-5">
+              <v-icon>mdi-heart</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-message-text</v-icon>
+            </v-btn>
+            <v-spacer />
+            <v-btn
+              text
+            >
+              {{ item.created_at }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
