@@ -1,10 +1,21 @@
 <template>
-    <div>
-        <v-card>
-            <v-card-title></v-card-title>
-            <v-card-text class="headline font-weight-bold">
-            "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-            </v-card-text>
-        </v-card>
-    </div>
+    <v-container>
+        <v-row justify="center">
+            <v-col cols="7">
+                <v-card>
+                    <v-card-title></v-card-title>
+                    <v-card-text class="headline font-weight-bold">
+                        {{ item }}
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
+
+<script>
+export default {
+    props: ['item']
+}
+
+</script>
