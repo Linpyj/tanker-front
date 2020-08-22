@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
-    これはAboutのページです
-  </div>
+    <div>
+        これはAboutページ。
+    </div>
 </template>

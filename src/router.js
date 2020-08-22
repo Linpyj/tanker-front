@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import About from '@/components/About.vue'
 import Login from '@/views/Login.vue'
 import Signup from '@/views/Signup.vue'
+import Timeline from '@/views/Timeline.vue'
 
 Vue.use(Router)
 
@@ -20,6 +21,10 @@ export default new Router({
     {
         path: '/signup',
         component: Signup
+    },
+    {
+        path: '/timeline',
+        component: Timeline
     }
   ]
 })
