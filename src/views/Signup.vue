@@ -20,12 +20,40 @@
           ></v-text-field>
           <v-btn
             class="mr-4"
-            @click="submit"
+            @click="submitSignupDatas"
           >
             Signup
           </v-btn>
         </v-form>
       </v-card-text>
     </v-card>
+    <v-row class="button">
+      <v-col>
+        <v-btn
+          style="margin-top: 4px;"
+          to="/"
+        >
+          Login
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
+
+<script>
+export default {
+    data() {
+      return {
+        name: '',
+        password: ''
+    }
+    },
+    methods: {
+      submitSignupDatas: function() {
+        var name = this.name
+        var password = this.password
+        console.log(name + password);
+      }
+    }
+  }
+</script>

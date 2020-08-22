@@ -43,18 +43,18 @@
 <script>
 
 export default {
-  data() {
-    return {
-      name: '',
-      password: ''
+    data() {
+      return {
+        name: '',
+        password: ''
     }
-  },
-  methods: {
-    submitLoginDatas: function() {
-      var name = this.name
-      var password = this.password
-      console.log(name + password);
+    },
+    methods: {
+      submitLoginDatas: function() {
+        var name = this.name
+        var password = this.password
+        console.log(name + password);
+      }
     }
   }
-}
 </script>
