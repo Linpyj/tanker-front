@@ -2,7 +2,7 @@
   <v-container>
     <v-card>
       <v-card-title>
-        Login
+        Signup
       </v-card-title>
       <v-card-text>
         <v-form>
@@ -22,26 +22,10 @@
             class="mr-4"
             @click="submit"
           >
-            Login
+            Signup
           </v-btn>
         </v-form>
       </v-card-text>
     </v-card>
-    <v-row class="button">
-      <v-col>
-        <v-btn
-          style="margin-top: 4px;"
-          to="/signup"
-        >
-          Signup
-        </v-btn>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
-
-<style scoped>
-.button {
-  text-align: center;
-}
-</style>>
