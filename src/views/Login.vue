@@ -20,7 +20,7 @@
           ></v-text-field>
           <v-btn
             class="mr-4"
-            @click="submit"
+            @click="submitLoginDatas()"
           >
             Login
           </v-btn>
@@ -40,8 +40,21 @@
   </v-container>
 </template>
 
-<style scoped>
-.button {
-  text-align: center;
+<script>
+
+export default {
+  data() {
+    return {
+      name: '',
+      password: ''
+    }
+  },
+  methods: {
+    submitLoginDatas: function() {
+      var name = this.name
+      var password = this.password
+      console.log(name + password);
+    }
+  }
 }
-</style>>
+</script>
