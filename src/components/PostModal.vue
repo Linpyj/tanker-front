@@ -9,7 +9,9 @@
 					<v-card-text>
 						<v-text-field
 							v-model="content"
-							label="歌を入力しましょう！">
+							:rules="[required, limit_length]"
+							counter="15"
+						>
 						</v-text-field>
 					</v-card-text>
 
@@ -40,7 +42,11 @@
 export default {
 	data() {
 		return {
-			content: ''
+			content: '',
+
+			// 入力のバリデーション
+			required: value => !!value || "入力必須です。",
+			limit_length: value => value.length <= 15 || "15文字以内で入力してください。"
 		}
 	},
 	methods: {
