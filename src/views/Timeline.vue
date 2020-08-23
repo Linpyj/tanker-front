@@ -1,5 +1,6 @@
  <template>
   <div>
+    <post-modal />
     <post-card 
         v-for="result in results" 
         :key="result.id"
@@ -11,6 +12,7 @@
 
 <script>
 import PostCard from '@/components/PostCard.vue'
+import PostModal from '@/components/PostModal.vue'
 
 export default {
     name: 'Timeline',
@@ -30,7 +32,8 @@ export default {
         }
     },
     components: {
-        PostCard
+        PostCard,
+        PostModal
     }
 }
 </script>
