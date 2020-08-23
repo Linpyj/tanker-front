@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="7">
+      <v-col cols="7" class="py-0">
         <v-card
           outlined
         >

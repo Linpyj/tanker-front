@@ -4,7 +4,7 @@
         v-for="result in results" 
         :key="result.id"
         :item="result"
-        class="py-0 my-0"
+        class="py-0"
     />
   </div>
 </template>
