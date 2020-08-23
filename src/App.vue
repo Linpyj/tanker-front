@@ -8,7 +8,12 @@
         scroll-target="#scrolling-techniques"
       >
         <v-toolbar-title>
-          Tanker
+          <v-btn
+            to="/timeline"
+            text
+          >
+            Tanker
+          </v-btn>
         </v-toolbar-title>
       </v-app-bar>
     </header>

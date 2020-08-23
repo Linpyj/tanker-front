@@ -1,7 +1,7 @@
 <template>
 	<v-container>
 		<v-row justify="center">
-			<v-col cols="7">
+			<v-col cols="9">
 				<h2 class="ml-2">Home</h2>
 				<v-card
 					outlined
