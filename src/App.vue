@@ -9,8 +9,8 @@
       >
         <v-toolbar-title>
           <v-btn
-            to="/timeline"
             text
+            @click.native="linkToTl(); $event.target.blur()"
           >
             Tanker
           </v-btn>
@@ -29,5 +29,10 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    linkToTl: function() {
+      this.$router.push('/timeline')
+    }
+  }
 };
 </script>
