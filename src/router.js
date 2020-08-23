@@ -5,6 +5,7 @@ import Login from '@/views/Login.vue'
 import Signup from '@/views/Signup.vue'
 import Timeline from '@/views/Timeline.vue'
 import MyPage from '@/views/MyPage.vue'
+import ShowPost from '@/views/ShowPost.vue'
 
 Vue.use(Router)
 
@@ -30,6 +31,10 @@ export default new Router({
     {
       path: '/mypage',
       component: MyPage
+    },
+    {
+      path: '/showpost',
+      component: ShowPost
     }
   ]
 })
