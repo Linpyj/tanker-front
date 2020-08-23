@@ -2,6 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="9" class="py-0">
+		<h2 class="ml-2 mt-2">My Page</h2>
         <v-card
           outlined
         >
