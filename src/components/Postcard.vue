@@ -4,15 +4,13 @@
       <v-col cols="7">
         <v-card
           outlined
-          height="100%"
         >
-          <v-card-text class="headline">
+          <v-card-text class="headline pb-0">
             {{ item.content }}
           </v-card-text>
           
           <v-card-actions
-            height="10%"
-            class="mt-5">
+            class="py-0">
             <v-btn text icon color="lighten-5">
               <v-icon>mdi-heart</v-icon>
             </v-btn>
