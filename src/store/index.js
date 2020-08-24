@@ -13,9 +13,9 @@ const store = new Vuex.Store({
 	mutations: {},
 	actions: {},
 	plugins: [createPersistedState({
-    key: "xxxproject",     // プロジェクト単位の一意の識別子
-    paths: ["auth.login"], // auth.js の loginキーは再度アクセスしても保持するようにする
-    storage: localStorage  // 今回は localStorage に保存することにする
+    key: "tanker",
+    paths: ["auth.token"],
+    storage: localStorage
   })]
 })
 
