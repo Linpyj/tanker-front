@@ -13,7 +13,7 @@ const auth = {
 		}
 	},
 	actions: {
-
+		// mutationのloginとlogoutを発火するアクションを記述
 	}
 }
 
