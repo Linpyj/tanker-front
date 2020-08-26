@@ -36,8 +36,7 @@ import axios from 'axios'
 export default {
 
 state: {
-    current: null,
-    name: 'John'
+    current: null
 },
 mutations: {
     setCurrent(state, payload) {
@@ -47,7 +46,6 @@ mutations: {
 actions: {
     async signin({commit}, {uid, password}) {
         const user = await axios.post('http://localhost:3000/login', {uid, password})
-				console.log(user)
 				commit('setCurrent', user)
         },  
    signout({commit}) {

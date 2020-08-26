@@ -1,43 +1,45 @@
 <template>
   <v-container>
-    <v-card>
+    <v-card
+      class="mx-auto mt-5"
+      max-width="70%"
+    >
       <v-card-title>
-        Login
+        ログイン
       </v-card-title>
       <v-card-text>
         <v-form>
           <v-text-field
             v-model="uid"
-            :counter="10"
-            label="uid"
+            label="ユーザーID"
             required
           ></v-text-field>
           <v-text-field
             v-model="password"
-            :counter="10"
-            label="password"
+            type="password"
+            label="パスワード"
             required
           ></v-text-field>
           <v-btn
             class="mr-4"
             @click="submitLoginDatas()"
           >
-            Login
+            ログイン
           </v-btn>
         </v-form>
       </v-card-text>
-    </v-card>
-    {{ getName }}
-    <v-row class="button">
-      <v-col>
+      <v-card-actions>
+        <v-spacer />
         <v-btn
           style="margin-top: 4px;"
           to="/signup"
+          color="primary"
+          text
         >
-          Signup
+          新規登録ページへ
         </v-btn>
-      </v-col>
-    </v-row>
+      </v-card-actions>
+    </v-card>
   </v-container>
 </template>
 
@@ -46,33 +48,26 @@ export default {
     data() {
       return {
         name: '',
+        uid: '',
         password: ''
       }
     },
     methods: {
       async submitLoginDatas() {
-        console.log('HI')
-        console.log(this.$store.state.user.name)
-        // ここまでは呼ばれてる
-        // store自体も登録できている(下のgetNameから確認できる)
         await this.$store.dispatch("signin",
           {
             uid: this.uid, 
             password: this.password
-          }, { root: true }
+          }
         )
-        console.log(this.$store.state.user.current)
-      }
-    },
-    // async fetch({store, axios}) {
-    //   await axios.$post('http://localhost:3000/login', {name: this.name, password: this.password})
-		// 		.then((response) => {
-		// 			store.dispatch('user/setCurrent', response.data)
-    // }
-    //     )},
-    computed: {
-      getName() {
-        return this.$store.state.user.name
+        const currentUser = this.$store.state.user.current
+        console.log('currentUser: ')
+        console.log(currentUser)
+        if (!currentUser) {
+          this.$router.push('/')
+        } else {
+          this.$router.push('/timeline')
+        }
       }
     }
   }
