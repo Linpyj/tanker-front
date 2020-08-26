@@ -27,6 +27,7 @@
         </v-form>
       </v-card-text>
     </v-card>
+    {{ getName }}
     <v-row class="button">
       <v-col>
         <v-btn
@@ -41,19 +42,37 @@
 </template>
 
 <script>
-
 export default {
     data() {
       return {
         name: '',
         password: ''
-    }
+      }
     },
     methods: {
-      submitLoginDatas: function() {
-        var name = this.name
-        var password = this.password
-        console.log(name + password);
+      async submitLoginDatas() {
+        console.log('HI')
+        console.log(this.$store.state.user.name)
+        // ここまでは呼ばれてる
+        // store自体も登録できている(下のgetNameから確認できる)
+        await this.$store.dispatch("signin",
+          {
+            name: this.name, 
+            password: this.password
+          }, { root: true }
+        )
+        console.log(this.$store.state.user.current)
+      }
+    },
+    // async fetch({store, axios}) {
+    //   await axios.$post('http://localhost:3000/login', {name: this.name, password: this.password})
+		// 		.then((response) => {
+		// 			store.dispatch('user/setCurrent', response.data)
+    // }
+    //     )},
+    computed: {
+      getName() {
+        return this.$store.state.user.name
       }
     }
   }

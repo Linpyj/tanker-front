@@ -8,6 +8,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import store from './store'
 import axios from 'axios'
+import Vuex from 'vuex'
 import VueAxios from 'vue-axios'
 
 Vue.config.productionTip = false
