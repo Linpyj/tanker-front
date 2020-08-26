@@ -7,9 +7,9 @@
       <v-card-text>
         <v-form>
           <v-text-field
-            v-model="name"
+            v-model="uid"
             :counter="10"
-            label="name"
+            label="uid"
             required
           ></v-text-field>
           <v-text-field
@@ -57,7 +57,7 @@ export default {
         // store自体も登録できている(下のgetNameから確認できる)
         await this.$store.dispatch("signin",
           {
-            name: this.name, 
+            uid: this.uid, 
             password: this.password
           }, { root: true }
         )

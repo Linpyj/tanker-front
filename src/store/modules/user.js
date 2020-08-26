@@ -45,8 +45,8 @@ mutations: {
     }
 },
 actions: {
-    async signin({commit}, {name, password}) {
-        const user = await axios.post('http://localhost:3000/login', {name, password})
+    async signin({commit}, {uid, password}) {
+        const user = await axios.post('http://localhost:3000/login', {uid, password})
 				console.log(user)
 				commit('setCurrent', user)
         },  
