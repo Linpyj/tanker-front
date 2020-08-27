@@ -3,7 +3,7 @@
 		<v-row justify="center">
 			<v-col cols="9">
 				<h2 class="ml-2">Home</h2>
-				currentUser: {{ getCurrent.name }}
+				currentUser: {{ getCurrent }}
 				<v-card
 					outlined
 				>
@@ -51,9 +51,12 @@ export default {
 		}
 	},
 	methods: {
-		registerContent: function() {
-			var content = this.content
-			console.log(content)
+		async registerContent() {
+			await this.$store.dispatch('createPost', {
+				content: this.content
+			}
+				)
+			console.log(this.$store.state.post.content)
 			this.content = ''
 		}
 	},
