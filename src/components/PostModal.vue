@@ -3,6 +3,7 @@
 		<v-row justify="center">
 			<v-col cols="9">
 				<h2 class="ml-2">Home</h2>
+				{{ value }}
 				<v-card
 					outlined
 				>
@@ -40,6 +41,7 @@
 
 <script>
 export default {
+	props: ['value'],
 	data() {
 		return {
 			content: '',
