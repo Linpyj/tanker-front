@@ -3,7 +3,7 @@
 		<v-row justify="center">
 			<v-col cols="9">
 				<h2 class="ml-2">Home</h2>
-				{{ value }}
+				currentUser: {{ getCurrent.name }}
 				<v-card
 					outlined
 				>
@@ -41,7 +41,6 @@
 
 <script>
 export default {
-	props: ['value'],
 	data() {
 		return {
 			content: '',
@@ -56,6 +55,11 @@ export default {
 			var content = this.content
 			console.log(content)
 			this.content = ''
+		}
+	},
+	computed: {
+		getCurrent() {
+			return this.$store.state.user.current
 		}
 	}
 }

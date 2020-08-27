@@ -4,9 +4,11 @@ module.exports = {
   ],
   configureWebpack: {
     devServer: {
+      host: 'localhost',
       watchOptions: {
         poll: true
-      }
+      },
+      disableHostCheck: true
     }
   }
 }

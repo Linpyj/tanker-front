@@ -1,6 +1,6 @@
  <template>
   <div>
-    <post-modal :value="getName" />
+    <post-modal />
     <post-card
         v-for="result in results" 
         :key="result.id"
@@ -29,11 +29,6 @@ export default {
                 {"id": 7, "user_id": 1, "content": '春過ぎて衣干すてふ天の香具山', "created_at": "2020-08-04"},
                 {"id": 8, "user_id": 5, "content": '秋の田のらみわが衣手は露にぬれつつ', "created_at": "2020-08-05"}
             ]
-        }
-    },
-    computed: {
-        getName() {
-            return this.$store.state.user.current
         }
     },
     components: {
