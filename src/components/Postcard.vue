@@ -18,12 +18,12 @@
             />
             <div>
               <div class="title ml-3">
-                {{ item.name }}
+                {{ post.name }}
               </div>
               <div
                 class="ml-3"
               >
-                {{ item.content }}
+                {{ post.content }}
               </div>
             </div>
           </v-card-text>
@@ -40,7 +40,7 @@
             <v-btn
               text
             >
-              {{ item.created_at }}
+              {{ post.created_at }}
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -51,7 +51,12 @@
 
 <script>
 export default {
-    props: ['item']
+    // props: ['post']
+  computed: {
+    posts() {
+      return this.$store.state.post.posts
+    }
+  }
 }
 
 </script>

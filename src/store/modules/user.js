@@ -4,7 +4,8 @@ export default {
 
 state: {
 		current: null,
-		token: null
+		token: null,
+		newUser: null
 },
 mutations: {
     setCurrent(state, payload) {
@@ -12,6 +13,9 @@ mutations: {
 		},
 		setToken(state, payload) {
 			state.token = payload
+		},
+		setNewUser(state, payload) {
+			state.newUser = payload
 		}
 },
 actions: {
@@ -24,6 +28,15 @@ actions: {
 },
    signout({commit}) {
         commit('setCurrent', null)
-    } 
+		},
+		async signup({commit}, {uid, name, password, password_confirmation}) {
+			const user = await axios.post('http://localhost:3000/users/create', {
+				uid: uid,
+				name: name,
+				password: password,
+				password_confirmation: password_confirmation
+			})
+			commit('setNewUser', user)
+		} 
 }
 }
