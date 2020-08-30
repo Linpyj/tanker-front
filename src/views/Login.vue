@@ -54,6 +54,7 @@ export default {
     },
     methods: {
       async submitLoginDatas() {
+
         await this.$store.dispatch("signin",
           {
             uid: this.uid, 

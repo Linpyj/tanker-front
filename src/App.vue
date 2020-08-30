@@ -90,5 +90,8 @@ export default {
         });
     }
   }
-};
+}
+//   computed: {
+//     // XMLHttpRequestの設定かく
+// };
 </script>

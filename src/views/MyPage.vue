@@ -21,6 +21,7 @@
       <v-tab>
         <v-btn
           text
+          @click.native="fetchLikePosts"
         >
           お気に入り
         </v-btn>
