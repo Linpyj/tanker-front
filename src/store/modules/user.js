@@ -1,4 +1,5 @@
 import axios from 'axios'
+axios.defaults.withCredentials = true
 
 export default {
 
@@ -20,16 +21,22 @@ mutations: {
 },
 actions: {
     async signin({commit}, {uid, password}) {
-		var xhr = new XMLHttpRequest();
-		xhr.withCredentials = true;
+		// const user = await axios({
+		// 	method: 'POST',
+		// 	url: 'localhost:3000/login',
+		// 	auth: {
+		// 		uid: uid,
+		// 		password: password
+		// 	},
+		// 	withCredentials: true
+		// })
         const user = await axios.post('http://localhost:3000/login', {
 			uid, 
 			password
 		},
-			xhr
 		)
 		commit('setCurrent', user.data.user)
-		commit('setToken', user.data.user)
+		commit('setToken', user)
 		// let d = new Date();                
 		// d.setTime(d.getTime() + (1*24*60*60*1000));
 		// let expires = "expires="+ d.toUTCString();

@@ -1,7 +1,10 @@
  <template>
   <div>
-    <div class="mt-5">
+    <div class="mt-5 ml-5">
       {{ this.$store.state.user.current }}
+    </div>
+    <div class="mt-5 ml-5">
+      {{ this.$store.state.post }}
     </div>
 
     <prof-card />
@@ -78,7 +81,7 @@ export default {
         return this.$store.state.post.posts
       }
     },
-    mounted() {
+    mounted: function() {
       this.$store.dispatch('fetchMyPosts')
     }
 
