@@ -22,6 +22,7 @@ new Vue({
   render: h => h(App),
   store,
   created() {
+    // この記述の要不要は要確認
     this.$store.state.user.current = JSON.parse(sessionStorage.getItem('tanker')).user.current
     this.$store.state.user.token = JSON.parse(sessionStorage.getItem('tanker')).user.token
     this.$store.state.post.posts = JSON.parse(sessionStorage.getItem('tanker')).post.posts

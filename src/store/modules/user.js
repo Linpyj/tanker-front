@@ -27,10 +27,6 @@ actions: {
 			},
 		)
 		sessionStorage.setItem('current', user.data.user)
-		const tankerData = sessionStorage.getItem('tanker')
-		console.log(tankerData)
-		console.log(JSON.parse(tankerData).user.token)
-		console.log(tankerData.length)
 		commit('setCurrent', user.data.user)
 		commit('setToken', user.data.user.token)
 			// if (sessionStorage.getItem('tanker')) {
