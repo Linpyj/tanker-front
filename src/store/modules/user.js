@@ -21,32 +21,25 @@ mutations: {
 },
 actions: {
     async signin({commit}, {uid, password}) {
-		// const user = await axios({
-		// 	method: 'POST',
-		// 	url: 'localhost:3000/login',
-		// 	auth: {
-		// 		uid: uid,
-		// 		password: password
-		// 	},
-		// 	withCredentials: true
-		// })
-        const user = await axios.post('http://localhost:3000/login', {
-			uid, 
-			password
-		},
+      const user = await axios.post('http://localhost:3000/login', {
+				uid, 
+				password
+			},
 		)
+		sessionStorage.setItem('current', user.data.user)
 		commit('setCurrent', user.data.user)
-		commit('setToken', user)
-		// let d = new Date();                
-		// d.setTime(d.getTime() + (1*24*60*60*1000));
-		// let expires = "expires="+ d.toUTCString();
-		// document.cookie = user.data.token + expires
-				// console.log(this.$store.state.user.current)
-				// console.log(this.$store.state.user.token)
+		commit('setToken', user.data.user.token)
+			// if (sessionStorage.getItem('tanker')) {
+			// 	const strageData = JSON.parse(sessionStorage.getItem('tanker'))
+			// 	if (strageData.user.token) {
+			// 		axios.defaults.headers.common['Authorization'] = 'Bearer ' + strageData.user.token;
+			// 	}
+			// }
+
 },
-   signout({commit}) {
-        commit('setCurrent', null)
-		},
+		signout({commit}) {
+				commit('setCurrent', null)
+			},
 		async signup({commit}, {uid, name, password, password_confirmation}) {
 			const user = await axios.post('http://localhost:3000/users/create', {
 				uid: uid,

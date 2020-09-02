@@ -17,7 +17,6 @@ mutations: {
 actions: {
 	async createPost({commit}, {content}) {
 		const post = await axios.post('http://localhost:3000/posts/create', {content})
-		console.log(post.data)
 		commit('setContent', post.data)
 	},
 	async fetchMyPosts({commit}) {

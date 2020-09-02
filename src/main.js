@@ -21,6 +21,14 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
   render: h => h(App),
   store,
+  created() {
+    // この記述の要不要は要確認
+    this.$store.state.user.current = JSON.parse(sessionStorage.getItem('tanker')).user.current
+    this.$store.state.user.token = JSON.parse(sessionStorage.getItem('tanker')).user.token
+    this.$store.state.post.posts = JSON.parse(sessionStorage.getItem('tanker')).post.posts
+    this.$store.state.post.content = JSON.parse(sessionStorage.getItem('tanker')).post.content
+    axios.defaults.headers.common['Authorization']= 'Bearer ' + JSON.parse(sessionStorage.getItem('tanker')).user.token;
+  },
   vuetify,
   router
 }).$mount('#app')
