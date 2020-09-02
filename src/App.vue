@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'App',
 
@@ -89,14 +89,6 @@ export default {
           }
         });
     }
-  },
-  mounted() {
-      if (sessionStorage.getItem('tanker')) {
-        const strageData = JSON.parse(sessionStorage.getItem('tanker'));
-      if (strageData.user.token) {
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + strageData.user.token;
-      }
-		}
   }
 }
 //   computed: {

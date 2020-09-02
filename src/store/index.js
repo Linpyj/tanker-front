@@ -8,13 +8,12 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	modules: {
-		user,
-		post
+		user: user,
+		post: post
 	},
 	plugins: [createPersistedState({
-        key: 'tanker',
-        // paths: ['user.token'],
-        storage: window.sessionStorage
+		key: 'tanker',
+		storage: window.sessionStorage
     })]
 	// plugins: [createPersistedState({
 	// 	key: "tanker",
