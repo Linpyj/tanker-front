@@ -35,7 +35,7 @@
     >
       <v-tab-item>
         <post-card
-          v-for="post in posts" 
+          v-for="post in content" 
           :key="post.id"
           class="py-0"
         />
@@ -43,7 +43,7 @@
       <v-tab-item>
         <h1>Tab2の内容ですよ</h1>
         <post-card 
-          v-for="post in posts" 
+          v-for="post in content" 
           :key="post.id"
           class="py-0"
         />
@@ -78,7 +78,7 @@ export default {
     },
     computed: {
       posts() {
-        return this.$store.state.post.posts
+        return this.$store.state.post.content
       }
     },
     mounted: function() {

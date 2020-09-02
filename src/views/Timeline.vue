@@ -7,6 +7,9 @@
 			:item="result"
 			class="py-0"
     />
+		<div>
+			{{ posts }}
+		</div>
 
 		<div class="title ml-5 mt-5">
 			ここにフォローしてる人の投稿一覧を表示する
@@ -41,7 +44,7 @@ export default {
 	},
 	computed: {
 		posts() {
-			return this.$store.state.post.posts
+			return this.$store.state.post.content
 		}
 	},
 	mounted() {

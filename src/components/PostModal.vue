@@ -56,7 +56,6 @@ export default {
 				content: this.content
 			}
 				)
-			console.log(this.$store.state.post.content)
 			this.content = ''
 		}
 	},

@@ -52,11 +52,11 @@
 <script>
 export default {
     // props: ['post']
-  computed: {
-    posts() {
-      return this.$store.state.post.posts
-    }
-  }
+  // computed: {
+  //   posts() {
+  //     return this.$store.state.post.posts
+  //   }
+  // }
 }
 
 </script>
