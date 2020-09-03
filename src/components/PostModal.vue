@@ -3,7 +3,6 @@
 		<v-row justify="center">
 			<v-col cols="9">
 				<h2 class="ml-2">Home</h2>
-				currentUser: {{ getCurrent }}
 				<v-card
 					outlined
 				>
