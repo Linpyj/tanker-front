@@ -5,8 +5,6 @@
         <v-card
           outlined
         >
-          
-
           <v-card-text
             class="headline pb-0"
             style="display:flex;"
@@ -18,12 +16,12 @@
             />
             <div>
               <div class="title ml-3">
-                {{ post.name }}
+                {{ item.name }}
               </div>
               <div
                 class="ml-3"
               >
-                {{ post.content }}
+                {{ item.content }}
               </div>
             </div>
           </v-card-text>
@@ -40,7 +38,7 @@
             <v-btn
               text
             >
-              {{ post.created_at }}
+              {{ item.created_at }}
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -51,7 +49,7 @@
 
 <script>
 export default {
-    // props: ['post']
+  props: ['item']
   // computed: {
   //   posts() {
   //     return this.$store.state.post.posts

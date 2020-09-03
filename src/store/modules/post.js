@@ -4,7 +4,8 @@ export default {
 
 state: {
 	content: [],
-	posts: []
+	posts: [],
+	followeePosts: []
 },
 mutations: {
 	setContent(state, payload) {
@@ -12,6 +13,9 @@ mutations: {
 	},
 	setPosts(state, payload) {
 		state.posts = payload
+	},
+	setFolloweePosts(state, payload) {
+		state.followeePosts = payload
 	}
 },
 actions: {
@@ -21,10 +25,12 @@ actions: {
 	},
 	async fetchMyPosts({commit}, {id}) {
 		const posts = await axios.get('http://localhost:3000/users/'+id)
-		console.log(posts)
-			// .then((res) => {
-			// 	commit('setPosts', res)
 		commit('setPosts', posts.data.posts)
-		}
+		},
+	async fetchOthersPosts({commit}) {
+		// followeeのpostsを取得するコントローラーを呼び出す
+		const posts = await axios.get('')
+		commit('setFolloweePosts', posts)
+	}
 	}
 }

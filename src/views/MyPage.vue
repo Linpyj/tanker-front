@@ -1,11 +1,11 @@
  <template>
   <div>
-    <div class="mt-5 ml-5">
+    <!-- <div class="mt-5 ml-5">
       {{ this.$store.state.user.current }}
     </div>
     <div class="mt-5 ml-5">
       {{ this.$store.state.post }}
-    </div>
+    </div> -->
 
     <prof-card />
     
@@ -37,6 +37,7 @@
         <post-card
           v-for="post in posts" 
           :key="post.id"
+          :item="post"
           class="py-0"
         />
       </v-tab-item>
@@ -54,18 +55,18 @@
 </template>
 
 <script>
-// import PostCard from '@/components/PostCard.vue'
+import PostCard from '@/components/PostCard.vue'
 import ProfCard from '@/components/ProfCard.vue'
 
 export default {
     name: 'Mypage',
     components: {
-      // PostCard,
+      PostCard,
       ProfCard
     },
     data() {
       return {
-        tab: '',
+        tab: ''
       }
     },
     methods: {
