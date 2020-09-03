@@ -1,15 +1,12 @@
  <template>
   <div>
     <post-modal />
-    <post-card
-			v-for="result in results" 
-			:key="result.id"
-			:item="result"
+    <!-- <post-card
+			v-for="post in posts" 
+			:key="post.id"
+			:item="post"
 			class="py-0"
-    />
-		<div>
-			{{ posts }}
-		</div>
+    /> -->
 
 		<div class="title ml-5 mt-5">
 			ここにフォローしてる人の投稿一覧を表示する
@@ -18,7 +15,7 @@
 </template>
 
 <script>
-import PostCard from '@/components/PostCard.vue'
+// import PostCard from '@/components/PostCard.vue'
 import PostModal from '@/components/PostModal.vue'
 
 export default {
@@ -39,16 +36,17 @@ export default {
 		}
 	},
 	components: {
-			PostCard,
+			// PostCard,
 			PostModal
 	},
 	computed: {
 		posts() {
-			return this.$store.state.post.content
+			return this.$store.state.post.posts
 		}
 	},
 	mounted() {
 		// フォローしてる人達の投稿をstateにsetする処理を書く
+		this.$store.dispatch('fetchOthersPosts')
 	}
 }
 </script>
