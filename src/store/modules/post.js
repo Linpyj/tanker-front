@@ -8,10 +8,10 @@ state: {
 },
 mutations: {
 	setContent(state, payload) {
-		state.content.push(payload)
+		state.content = payload
 	},
 	setPosts(state, payload) {
-		state.posts.push(payload)
+		state.posts = payload
 	}
 },
 actions: {
@@ -19,12 +19,12 @@ actions: {
 		const post = await axios.post('http://localhost:3000/posts/create', {content})
 		commit('setContent', post.data)
 	},
-	async fetchMyPosts({commit}) {
-		var id = this.$store.state.user.current.id
+	async fetchMyPosts({commit}, {id}) {
 		const posts = await axios.get('http://localhost:3000/users/'+id)
+		console.log(posts)
 			// .then((res) => {
 			// 	commit('setPosts', res)
-		commit('setPosts', posts.data)
+		commit('setPosts', posts.data.posts)
 		}
 	}
 }
