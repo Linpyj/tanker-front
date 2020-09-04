@@ -10,7 +10,7 @@
             style="display:flex;"
           >
             <img
-              src="https://img.game8.jp/1093756/119442862629bb2c0615084715bc7235_2017-08-10.png/show?1502349009"
+              src="https://i.pinimg.com/280x280_RS/45/33/95/453395e8b5fb023351521c680fe85bef.jpg"
               height="50px;"
               style="border-radius: 50%"
             />
@@ -29,10 +29,10 @@
           <v-card-actions
             class="pt-0">
             <v-btn text icon color="lighten-5">
-              <v-icon>mdi-heart</v-icon>
+              <v-icon style="opacity:0.6">mdi-heart</v-icon>
             </v-btn>
             <v-btn icon>
-              <v-icon>mdi-message-text</v-icon>
+              <v-icon style="opacity:0.6">mdi-message-text</v-icon>
             </v-btn>
             <v-spacer />
             <v-btn
@@ -52,8 +52,8 @@ import moment from 'moment'
 export default {
   props: ['item'],
   filters: {
-    moment: function() {
-      return moment().format('YYYY-MM-DD HH:mm')
+    moment: function(date) {
+      return moment(date).format('YYYY-MM-DD HH:mm')
     }
   }
   // computed: {
