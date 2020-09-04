@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="7">
-      <h2 class="ml-2 mt-5">自分のページ</h2>
+      <h2 class="ml-2 mt-5">マイページ</h2>
         <v-card
           outlined
         >
@@ -43,12 +43,12 @@
 							</div>
 						</div>
 						<v-spacer />
-						<v-btn
+						<!-- <v-btn
 							color="blue"
 							style="color: white;"
 						>
 							Follow
-						</v-btn>
+						</v-btn> -->
           </v-card-text>
           
           <v-card-actions

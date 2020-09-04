@@ -38,7 +38,7 @@
             <v-btn
               text
             >
-              {{ item.created_at }}
+              {{ item.created_at | moment }}
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -48,8 +48,14 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
-  props: ['item']
+  props: ['item'],
+  filters: {
+    moment: function() {
+      return moment().format('YYYY-MM-DD HH:mm')
+    }
+  }
   // computed: {
   //   posts() {
   //     return this.$store.state.post.posts
