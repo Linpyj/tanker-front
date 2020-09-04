@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="7">
-      <h2 class="ml-2 mt-5">マイページ</h2>
+      <h2 class="ml-2 mt-5"><slot>マイページ</slot></h2>
         <v-card
           outlined
         >

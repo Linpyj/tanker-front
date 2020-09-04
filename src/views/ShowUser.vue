@@ -1,6 +1,6 @@
  <template>
   <div>
-    <prof-card />
+    <prof-card>ユーザーページ</prof-card>
     <post-card
       v-for="post in posts" 
       :key="post.id"
@@ -16,7 +16,7 @@ import PostCard from '@/components/PostCard.vue'
 import ProfCard from '@/components/ProfCard.vue'
 
 export default {
-    name: 'Mypage',
+    name: 'ShowUser',
     components: {
       PostCard,
       ProfCard
@@ -32,7 +32,7 @@ export default {
       }
     },
     mounted: function() {
-      this.$store.dispatch('fetchMyPosts', { id: this.$store.state.user.current.id })
+      // this.$store.dispatch('fetchMyPosts', { id: this.$store.state.user.current.id })
     }
 
 }
