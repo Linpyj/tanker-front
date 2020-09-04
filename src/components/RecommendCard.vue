@@ -1,6 +1,5 @@
 <template>
   <v-container>
-
     <v-card
       outlined
       class="flex:6"

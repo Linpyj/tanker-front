@@ -1,8 +1,8 @@
 <template>
 	<v-container>
 		<v-row justify="center">
-      <v-col cols="7" class="py-0">
-				<h2 class="ml-2 mt-2">おすすめユーザー</h2>
+      <v-col cols="7">
+				<h2 class="ml-2 mt-5">おすすめユーザー</h2>
 				<recommend-card
 					v-for="user in users"
 					:key="user.id"
