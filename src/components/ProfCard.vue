@@ -43,12 +43,16 @@
 							</div>
 						</div>
 						<v-spacer />
-						<!-- <v-btn
-							color="blue"
-							style="color: white;"
-						>
-							Follow
-						</v-btn> -->
+            <div
+              v-if="user.id!=currentUser.id"
+            >
+              <v-btn
+                color="blue"
+                style="color: white;"
+              >
+                Follow
+              </v-btn>
+            </div>
           </v-card-text>
           
           <v-card-actions
@@ -66,6 +70,7 @@ export default {
 	data: function() {
 		return {
 			user: {
+        id: '5',
 				name: 'ケン吉田',
 				uid: '@kenyoshida',
         intro: '私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。',
@@ -73,6 +78,11 @@ export default {
         follower: '5 billion'        
 			}
 		}
-	}
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.user.current
+    }
+  }
 }
 </script>
