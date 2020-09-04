@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <header>
-      <v-card
+      <!-- <v-card
         class="mx-auto overflow-hidden"
         style="margin-bottom: 50px;"
-      >
+      > -->
         <v-app-bar
           app
           color="indigo"
@@ -60,9 +60,9 @@
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
-      </v-card>
+      <!-- </v-card> -->
     </header>
-    <router-view />
+    <router-view class="mt-10" />
   </v-app>
 </template>
 
