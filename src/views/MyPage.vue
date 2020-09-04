@@ -12,6 +12,7 @@
     <v-tabs
       v-model="tab"
       centered
+      class="mb-5"
     >
       <v-tab>
         <v-btn

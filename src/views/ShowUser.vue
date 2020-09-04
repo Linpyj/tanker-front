@@ -1,12 +1,16 @@
  <template>
   <div>
     <prof-card>ユーザーページ</prof-card>
+    <div class="ml-10">
+      {{ id }}
+    </div>
     <post-card
       v-for="post in posts" 
       :key="post.id"
       :item="post"
       class="py-0"
     />
+
     
   </div>
 </template>
@@ -29,10 +33,14 @@ export default {
     computed: {
       posts() {
         return this.$store.state.post.posts
+      },
+      id() {
+        return this.$route.params['id']
       }
     },
     mounted: function() {
-      // this.$store.dispatch('fetchMyPosts', { id: this.$store.state.user.current.id })
+      // this.$route.params['id']でuser_idが取得できるので、
+      // userの情報とそのuserが持つpostsをfetch
     }
 
 }

@@ -9,11 +9,17 @@
             class="headline pb-0"
             style="display:flex;"
           >
-            <img
-              src="https://i.pinimg.com/280x280_RS/45/33/95/453395e8b5fb023351521c680fe85bef.jpg"
-              height="50px;"
-              style="border-radius: 50%"
-            />
+            <!-- <v-btn
+              @click.native="linkToShow(item.id)"
+            > -->
+            <router-link :to="{name:'showuser',params:{id:item.user_id}}">
+              <img
+                src="https://i.pinimg.com/280x280_RS/45/33/95/453395e8b5fb023351521c680fe85bef.jpg"
+                height="50px;"
+                style="border-radius: 50%"
+              />
+            </router-link>
+            <!-- </v-btn> -->
             <div>
               <div class="title ml-3">
                 {{ item.name }}
@@ -54,6 +60,12 @@ export default {
   filters: {
     moment: function(date) {
       return moment(date).format('YYYY-MM-DD HH:mm')
+    }
+  },
+  methods: {
+    linkToShow(id) {
+      console.log(id)
+      // this.$router.push('showuser/'+id)
     }
   }
   // computed: {
