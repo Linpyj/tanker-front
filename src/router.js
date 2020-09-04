@@ -6,6 +6,7 @@ import Signup from '@/views/Signup.vue'
 import Timeline from '@/views/Timeline.vue'
 import MyPage from '@/views/MyPage.vue'
 import ShowPost from '@/views/ShowPost.vue'
+import Recommend from '@/views/Recommend.vue'
 
 Vue.use(Router)
 
@@ -35,6 +36,10 @@ export default new Router({
     {
       path: '/showpost',
       component: ShowPost
+    },
+    {
+      path: '/recommend',
+      component: Recommend
     }
   ]
 })

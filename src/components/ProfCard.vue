@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="9" class="py-0">
-		<h2 class="ml-2 mt-2">My Page</h2>
+      <h2 class="ml-2 mt-2">My Page</h2>
         <v-card
           outlined
         >
@@ -33,12 +33,12 @@
 								<v-btn
 									text
 								>
-									{{ ff.followee }} フォロー
+									{{ user.followee }} フォロー
 								</v-btn>
 								<v-btn
 									text
 								>
-									{{ ff.follower }} フォロワー
+									{{ user.follower }} フォロワー
 								</v-btn>
 							</div>
 						</div>
@@ -49,7 +49,6 @@
 						>
 							Follow
 						</v-btn>
-						
           </v-card-text>
           
           <v-card-actions
@@ -69,11 +68,9 @@ export default {
 			user: {
 				name: 'ケン吉田',
 				uid: '@kenyoshida',
-				intro: '私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。'
-			},
-			ff: {
-				followee: '3',
-				follower: '5 billion'
+        intro: '私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。',
+        followee: '3',
+        follower: '5 billion'        
 			}
 		}
 	}
