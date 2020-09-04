@@ -1,8 +1,8 @@
 <template>
 	<v-container>
 		<v-row justify="center">
-			<v-col cols="9">
-				<h2 class="ml-2">Home</h2>
+			<v-col cols="7">
+				<h2 class="ml-2 mt-5">タイムライン</h2>
 				<v-card
 					outlined
 				>
@@ -21,7 +21,7 @@
 							text
 							color="black"
 						>
-							Submit
+							投稿する
 						</v-btn>
 						<v-btn
 							v-else
@@ -29,7 +29,7 @@
 							color="blue"
 							@click.native="registerContent"
 						>
-							Submit
+							投稿する
 						</v-btn>
 					</v-card-actions>
 				</v-card>
