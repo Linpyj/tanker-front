@@ -1,6 +1,6 @@
  <template>
   <div>
-    <prof-card class="mt-9">ユーザーページ</prof-card>
+    <prof-card>ユーザーページ</prof-card>
     <div class="ml-10">
       {{ id }}
     </div>
