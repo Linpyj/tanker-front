@@ -18,7 +18,7 @@
               :rules="[limit_length]"
               auto-grow
               counter="30"
-              label="短歌を記入"
+              label="短歌を記入してください。"
               rows="1"
             ></v-textarea>
 					</v-card-text>

@@ -4,7 +4,7 @@
       <v-col cols="7">
         <h2 class="mt-5 ml-2">設定</h2>
         <v-card
-          class="mx-auto mt-5"
+          class="mx-auto"
         >
           <v-card-text>
             <v-form>
