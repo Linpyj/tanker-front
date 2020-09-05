@@ -11,6 +11,7 @@
               color="blue"
               style="color: white;"
               text
+              @click.native="createFollow"
             >
               Follow
             </v-btn>
@@ -22,7 +23,7 @@
         <v-list-item>
           <v-list-item-avatar>
             <v-img
-              src="https://i.pinimg.com/280x280_RS/45/33/95/453395e8b5fb023351521c680fe85bef.jpg"
+              src="https://prtimes.jp/i/22901/578/resize/d22901-578-199927-0.jpg"
             />
           </v-list-item-avatar>
           <v-list-item-content>
@@ -76,6 +77,12 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.user.current
+    }
+  },
+  methods: {
+    createFollow: function() {
+      var id = this.user.id
+      this.$store.dispatch('createFollow', {id})
     }
   }
 }
