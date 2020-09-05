@@ -7,12 +7,20 @@
 					outlined
 				>
 					<v-card-text>
-						<v-text-field
+						<!-- <v-text-field
 							v-model="content"
 							:rules="[required, limit_length]"
 							counter="15"
 						>
-						</v-text-field>
+						</v-text-field> -->
+            <v-textarea
+              v-model="content"
+              :rules="[limit_length]"
+              auto-grow
+              counter="30"
+              label="短歌を記入"
+              rows="1"
+            ></v-textarea>
 					</v-card-text>
 
 					<v-card-actions>
@@ -45,8 +53,7 @@ export default {
 			content: '',
 
 			// 入力のバリデーション
-			required: value => !!value || "入力必須です。",
-			limit_length: value => value.length <= 15 || "15文字以内で入力してください。"
+			limit_length: value => value.length <= 30 || "30文字以内で入力してください。"
 		}
 	},
 	methods: {
