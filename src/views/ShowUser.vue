@@ -1,11 +1,11 @@
  <template>
   <div>
-    <prof-card>ユーザーページ</prof-card>
+    <prof-card class="mt-9">ユーザーページ</prof-card>
     <div class="ml-10">
       {{ id }}
     </div>
     <post-card
-      v-for="post in posts" 
+      v-for="post in posts"
       :key="post.id"
       :item="post"
       class="py-0"

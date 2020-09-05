@@ -1,52 +1,67 @@
 <template>
   <v-container>
-    <v-card>
-      <v-card-title>
-        Signup
-      </v-card-title>
-      <v-card-text>
-        <v-form>
-          <v-text-field
-            v-model="uid"
-            :counter="10"
-            label="uid"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="name"
-            :counter="10"
-            label="name"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            :counter="10"
-            label="password"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="password2"
-            :counter="10"
-            label="password2"
-            required
-          ></v-text-field>
-          <v-btn
-            class="mr-4"
-            @click="submitSignupDatas"
-          >
-            Signup
-          </v-btn>
-        </v-form>
-      </v-card-text>
-    </v-card>
-    <v-row class="button">
-      <v-col>
-        <v-btn
-          style="margin-top: 4px;"
-          to="/"
-        >
-          Login
-        </v-btn>
+    <v-row justify="center">
+      <v-col cols="7">
+        <h2 class="ml-2 mt-5">新規会員登録</h2>
+        <v-card>
+          <v-card-text>
+            <v-form>
+              <v-text-field
+                v-model="uid"
+                :counter="10"
+                label="ユーザーID (任意の文字列)"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="name"
+                :counter="10"
+                label="ユーザー名"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="password"
+                :counter="10"
+                label="パスワード"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="password2"
+                :counter="10"
+                label="パスワードをもう一度入力してください。"
+                required
+              ></v-text-field>
+              <v-btn
+                v-if="!uid||!name||!password||!password2"
+                class="mr-4"
+                color="black"
+                text
+                style="pointer-events:none;"
+              >
+                この情報で登録
+              </v-btn>
+              <v-btn
+                v-else
+                class="mr-4"
+                @click="submitSignupDatas"
+                text
+                color="primary"
+              >
+                この情報で登録
+              </v-btn>
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              style="margin-top: 4px;"
+              to="/"
+              color="primary"
+              text
+            >
+              ログインページへ
+            </v-btn>
+          </v-card-actions>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
