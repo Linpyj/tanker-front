@@ -11,6 +11,9 @@
 		<div class="title ml-5 mt-5">
 			ここにフォローしてる人の投稿一覧を表示する
 		</div>
+		<div class="title ml-5 mt-5">
+			工事中。。。
+		</div>
   </div>
 </template>
 
