@@ -2,63 +2,57 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="7">
-      <h2 class="ml-2 mt-5"><slot>マイページ</slot></h2>
+        <div class="flex">
+          <h2 class="ml-2 mt-5"><slot>マイページ</slot></h2>
+          <v-spacer />
+          <div>
+            <v-btn
+              v-if="user.id!=currentUser.id"
+              color="blue"
+              style="color: white;"
+              text
+            >
+              Follow
+            </v-btn>
+          </div>
+        </div>
         <v-card
           outlined
         >
-          <v-card-text
-						class="headline pb-0"
-						style="display:flex;"
-					>
-						<img
-							src="https://i0.wp.com/masamunenet.com/wp-content/uploads/2018/05/zzzzzz-8.png?fit=500%2C316&ssl=1"
-							height="50px;"
-							width="50px"
-              style="border-radius: 50%"
-						>
-						<div>
-							<div class="title ml-3 mb-0 pb-0">
-								{{ user.name }}
-							</div>
-							<div
-								class="subtitle-2 ml-3 mt-0 pt-0"
-								style="opacity: 0.8;"
-							>
-								{{ user.uid }}
-							</div>
-							<div class="ml-3 subtitle-1 pt-3">
-								{{ user.intro }}
-							</div>
-							<div class="mt-5">
-								<v-btn
-									text
-								>
-									{{ user.followee }} フォロー
-								</v-btn>
-								<v-btn
-									text
-								>
-									{{ user.follower }} フォロワー
-								</v-btn>
-							</div>
-						</div>
-						<v-spacer />
-            <div
-              v-if="user.id!=currentUser.id"
-            >
-              <v-btn
-                color="blue"
-                style="color: white;"
-              >
-                Follow
-              </v-btn>
-            </div>
-          </v-card-text>
-          
-          <v-card-actions
-            class="py-0">
-						
-          </v-card-actions>
+        <v-list-item>
+          <v-list-item-avatar>
+            <v-img
+              src="https://i.pinimg.com/280x280_RS/45/33/95/453395e8b5fb023351521c680fe85bef.jpg"
+            />
+          </v-list-item-avatar>
+          <v-list-item-content>
+            
+            <v-list-item-title>
+              {{ user.name }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ user.uid }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-card-text>
+          {{ user.intro }}
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn
+            text
+          >
+            {{ user.followee }} フォロー
+          </v-btn>
+          <v-btn
+            text
+          >
+            {{ user.follower }} フォロワー
+          </v-btn>
+        </v-card-actions>
+
         </v-card>
       </v-col>
     </v-row>
