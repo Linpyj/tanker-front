@@ -2,21 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="7">
-        <div class="flex">
-          <h2 class="ml-2 mt-5"><slot>マイページ</slot></h2>
-          <v-spacer />
-          <div>
-            <v-btn
-              v-if="user.id!=currentUser.id"
-              color="blue"
-              style="color: white;"
-              text
-              @click.native="createFollow"
-            >
-              Follow
-            </v-btn>
-          </div>
-        </div>
+        <h2 class="ml-2 mt-5"><slot>マイページ</slot></h2>
         <v-card
           outlined
         >
@@ -51,6 +37,16 @@
             text
           >
             {{ user.follower }} フォロワー
+          </v-btn>
+          <v-spacer />
+          <v-btn
+            v-if="user.id!=currentUser.id"
+            color="blue"
+            style="color: white;"
+            text
+            @click.native="createFollow"
+          >
+            フォローする
           </v-btn>
         </v-card-actions>
 
