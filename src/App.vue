@@ -29,40 +29,34 @@
           <v-list-item-group
             active-class="text--accent-4"
           >
-            <v-list-item>
-              <v-btn
-                text
-                @click.native="linkToTl()"
-              >
+            <v-list-item
+              text
+              @click="linkToTl"
+            >
                 <v-list-item-icon>
                   <v-icon>mdi-home</v-icon>
                 </v-list-item-icon>
                 <v-list-item-title>タイムライン</v-list-item-title>
-              </v-btn>
             </v-list-item>
 
-            <v-list-item>
-              <v-btn
+            <v-list-item
                 text
-                @click.native="linkToMypage"
-              >
-                <v-list-item-icon>
-                  <v-icon>mdi-account</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>マイページ</v-list-item-title>
-              </v-btn>
+                @click="linkToMypage"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-account</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>マイページ</v-list-item-title>
             </v-list-item>
 
-            <v-list-item>
-              <v-btn
-                text
-                @click.native="linkToConfig"
-              >
-                <v-list-item-icon>
-                  <v-icon>mdi-cog</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>設定</v-list-item-title>
-              </v-btn>
+            <v-list-item
+              text
+              @click.native="linkToConfig"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-cog</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>設定</v-list-item-title>
             </v-list-item>
 
           </v-list-item-group>
