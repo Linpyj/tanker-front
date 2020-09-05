@@ -26,6 +26,7 @@
 					<v-card-actions>
 						<v-btn
 							v-if="this.content.length<=8"
+              style="pointer-events:none;"
 							text
 							color="black"
 						>
