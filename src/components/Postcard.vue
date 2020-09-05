@@ -43,6 +43,7 @@
             <v-spacer />
             <v-btn
               text
+              @click.native="linkToShow"
             >
               {{ item.created_at | moment }}
             </v-btn>
@@ -63,9 +64,8 @@ export default {
     }
   },
   methods: {
-    linkToShow(id) {
-      console.log(id)
-      // this.$router.push('showuser/'+id)
+    linkToShow() {
+      this.$router.push({name:'showuser',params:{id:this.item.user_id}})
     }
   }
   // computed: {
