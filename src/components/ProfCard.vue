@@ -39,15 +39,26 @@
             {{ user.follower }} フォロワー
           </v-btn>
           <v-spacer />
-          <v-btn
+          <div
             v-if="user.id!=currentUser.id"
-            color="blue"
-            style="color: white;"
-            text
-            @click.native="createFollow"
           >
-            フォローする
-          </v-btn>
+            <v-btn
+              v-if="!isFollowing"
+              color="blue"
+              text
+              @click.native="createFollow"
+            >
+              フォローする
+            </v-btn>
+            <v-btn
+              v-else
+              color="black"
+              text
+              @click.native="removeFollow"
+            >
+              フォローしています
+            </v-btn>
+          </div>
         </v-card-actions>
 
         </v-card>
@@ -73,13 +84,20 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.user.current
+    },
+    isFollowing() {
+      return this.$store.state.follow.state
     }
   },
   methods: {
     createFollow: function() {
       var id = this.user.id
       this.$store.dispatch('createFollow', {id})
-    }
+    },
+    removeFollow: function() {
+      var id = this.user.id
+      this.$store.dispatch('removeFollow', {id})
+    },
   }
 }
 </script>

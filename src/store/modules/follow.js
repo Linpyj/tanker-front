@@ -24,18 +24,20 @@ mutations: {
 actions: {
 
   // フォローする
-  async createFollow({commit}, {id}) {
+  async createFollow({commit, state}, {id}) {
     // idは相手ユーザーのuser_id
     // このstoreのstateにはuser_idのみいれる
+    console.log(typeof state.myFollowee)
     await axios.post(`http://localhost:3000/users/${id}/follow`)
     commit('addMyFollowee', id)
+    console.log(state.myFollowee)
     commit('changeStatus')
   },
 
   // フォローを外す
-  async removeFollow({commit}, {id}) {
+  async removeFollow({commit}, {state, id}) {
     await axios.post(`http://localhost:3000/users/${id}/remove`)
-    const newArray = this.state.filter(n => n != id)
+    const newArray = state.myFollowee.filter(n => n != id)
     commit('setMyFollowee', newArray)
     commit('changeStatus')
   },
