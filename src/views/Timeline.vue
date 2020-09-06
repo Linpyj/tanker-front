@@ -1,13 +1,14 @@
  <template>
   <div>
     <post-modal />
-    <post-card
-			v-for="post in followeePosts" 
-			:key="post.id"
-			:item="post"
-			class="py-0"
-    />
-
+		<div v-if="followeePosts.data.post!=null">
+			<post-card
+				v-for="post in followeePosts.data.post" 
+				:key="post.id"
+				:item="post"
+				class="py-0"
+			/>
+		</div>
 		<div class="title ml-5 mt-5">
 			ここにフォローしてる人の投稿一覧を表示する
 		</div>
