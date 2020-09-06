@@ -1,12 +1,12 @@
  <template>
   <div>
     <post-modal />
-    <!-- <post-card
-			v-for="post in posts" 
+    <post-card
+			v-for="post in followeePosts" 
 			:key="post.id"
 			:item="post"
 			class="py-0"
-    /> -->
+    />
 
 		<div class="title ml-5 mt-5">
 			ここにフォローしてる人の投稿一覧を表示する
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-// import PostCard from '@/components/PostCard.vue'
+import PostCard from '@/components/PostCard.vue'
 import PostModal from '@/components/PostModal.vue'
 
 export default {
@@ -39,12 +39,12 @@ export default {
 		}
 	},
 	components: {
-			// PostCard,
+			PostCard,
 			PostModal
 	},
 	computed: {
-		posts() {
-			return this.$store.state.post.posts
+		followeePosts() {
+			return this.$store.state.post.followeePosts
 		}
 	},
 	mounted() {
