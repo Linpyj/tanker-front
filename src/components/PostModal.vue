@@ -24,20 +24,20 @@
             <v-autocomplete
               v-model="tag"
               :items="tags"
+              @click="selected.push(tag)"
               hide-no-data
               hide-selected
-              cache-items
               placeholder="タグを入力してください。"
               return-object
               multiple
             >
               <template v-slot:selection="data">
                 <v-chip
-                  :selected="data.selected"
+                  :input-value="data.selected"
                   close
                   class="chip--select-multi"
-
-                  @input="remove(data.item)"
+                  @input="addTag(data.item)"
+                  @click:close="removeTag(data.item)"
                 >
                   {{ data.item }}
                 </v-chip>
@@ -81,7 +81,7 @@ export default {
         '日常',
         '生活'
       ],
-      // selected: [],
+      selected: [],
 
 			// 入力のバリデーション
 			limit_length: value => value.length <= 30 || "30文字以内で入力してください。"
@@ -95,10 +95,18 @@ export default {
 				)
 			this.content = ''
     },
-    remove (item) {
-        const index = this.tags.indexOf(item.name)
-        if (index >= 0) this.tags.splice(index, 1)
-      }
+    addTag() {
+      // this.selected.push(item)
+      // console.log(this.selected)
+      console.log(this.tags)
+      console.log(this.selected)
+      console.log(this.data.selected)
+      console.log(this.item)
+    },
+    removeTag(item) {
+      const index = this.tags.indexOf(item)
+      if (index >= 0) this.tags.splice(index, 1)
+    }
 	},
 	computed: {
 		getCurrent() {
