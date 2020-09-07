@@ -59,6 +59,17 @@
               フォローしています
             </v-btn>
           </div>
+          <div
+            v-else
+          >
+            <v-btn
+              color="blue"
+              text
+              @click.native="linkToConfig"
+            >
+              プロフィールを編集
+            </v-btn>
+          </div>
         </v-card-actions>
 
         </v-card>
@@ -98,6 +109,9 @@ export default {
       var id = this.user.id
       this.$store.dispatch('removeFollow', {id})
     },
+    linkToConfig: function() {
+      this.$router.push('/config')
+    }
   }
 }
 </script>

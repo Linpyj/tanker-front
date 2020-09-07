@@ -21,6 +21,9 @@
             </router-link>
             <!-- </v-btn> -->
             <div>
+              <div>
+                {{ item }}
+              </div>
               <div class="title ml-3">
                 {{ item.name }}
               </div>

@@ -30,8 +30,8 @@ actions: {
 	async fetchOthersPosts({commit}) {
 		// followeeのpostsを取得するコントローラーを呼び出す
     const posts = await axios.get('http://localhost:3000/posts/timeline')
-    console.log(posts.data)
-		commit('setFolloweePosts', posts)
+    console.log(posts.data.posts)
+		commit('setFolloweePosts', posts.data.posts)
 	}
 	}
 }

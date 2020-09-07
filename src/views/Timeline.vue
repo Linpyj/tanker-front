@@ -1,19 +1,20 @@
  <template>
   <div>
     <post-modal />
-		<div v-if="followeePosts.data.post!=null">
+		<div v-if="followeePosts!=null">
 			<post-card
-				v-for="post in followeePosts.data.post" 
+				v-for="post in followeePosts" 
 				:key="post.id"
 				:item="post"
 				class="py-0"
 			/>
 		</div>
-		<div class="title ml-5 mt-5">
-			ここにフォローしてる人の投稿一覧を表示する
-		</div>
-		<div class="title ml-5 mt-5">
-			工事中。。。
+		<div class="title ml-10 mt-10">
+			ここにフォローしてる人の投稿一覧を表示する。
+			<br>
+			フォローしてる人がいないor postがない場合は、
+			<br>
+			おすすめユーザー一覧を表示。
 		</div>
   </div>
 </template>
