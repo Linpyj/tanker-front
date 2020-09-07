@@ -21,6 +21,29 @@
               label="短歌を記入してください。"
               rows="1"
             ></v-textarea>
+            <v-autocomplete
+              v-model="tag"
+              :items="tags"
+              hide-no-data
+              hide-selected
+              cache-items
+              placeholder="タグを入力してください。"
+              return-object
+              multiple
+            >
+              <template v-slot:selection="data">
+                <v-chip
+                  :selected="data.selected"
+                  close
+                  class="chip--select-multi"
+
+                  @input="remove(data.item)"
+                >
+                  {{ data.item }}
+                </v-chip>
+              </template>
+            </v-autocomplete>
+                        
 					</v-card-text>
 
 					<v-card-actions>
@@ -51,7 +74,14 @@
 export default {
 	data() {
 		return {
-			content: '',
+      content: '',
+      tag: '',
+      tags: [
+        '季節の短歌',
+        '日常',
+        '生活'
+      ],
+      // selected: [],
 
 			// 入力のバリデーション
 			limit_length: value => value.length <= 30 || "30文字以内で入力してください。"
@@ -64,12 +94,24 @@ export default {
 			}
 				)
 			this.content = ''
-		}
+    },
+    remove (item) {
+        const index = this.tags.indexOf(item.name)
+        if (index >= 0) this.tags.splice(index, 1)
+      }
 	},
 	computed: {
 		getCurrent() {
 			return this.$store.state.user.current
-		}
+    },
+    selectedTags() {
+        const selectedTags = []
+
+        for (const tag of this.selected) {
+          selectedTags.push(tag)
+        }
+        return selectedTags
+      }
 	}
 }
 </script>
