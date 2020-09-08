@@ -21,16 +21,21 @@
             </router-link>
             <!-- </v-btn> -->
             <div>
-              <div>
-                {{ item }}
-              </div>
-              <div class="title ml-3">
-                {{ item.name }}
-              </div>
               <div
                 class="ml-3"
               >
                 {{ item.content }}
+              </div>
+              <div>
+                <v-chip
+                  v-for="tag in item.tag_list"
+                  :key="tag.id"
+                  color="primary"
+                  small
+                  class="ml-3"
+                >
+                  {{ tag }}
+                </v-chip>
               </div>
             </div>
           </v-card-text>
