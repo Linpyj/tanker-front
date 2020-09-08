@@ -25,6 +25,7 @@
                 class="ml-3"
               >
                 {{ item.content }}
+                {{ item.user_id }}
               </div>
               <div>
                 <v-chip
@@ -37,6 +38,67 @@
                   {{ tag }}
                 </v-chip>
               </div>
+            </div>
+            <v-spacer />
+            <div>
+              <v-menu>
+                <template v-slot:activator="{ on }">
+                  <v-btn 
+                    text 
+                    icon 
+                    v-on="on"
+                  >
+                    <v-icon>mdi-dots-horizontal</v-icon>
+                  </v-btn>
+                </template>
+                <v-list
+                  v-if="currentUser.id==item.user_id"
+                  dense
+                >
+                  <v-list-item>
+                    <v-list-item-title>
+                      <v-btn
+                        text
+                        @click="destroyPost(item.id)"
+                      >
+                        削除
+                      </v-btn>
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-divider vertical />
+                  <v-list-item>
+                    <v-list-item-title>
+                      <v-btn
+                        text
+                      >
+                        キャンセル
+                      </v-btn>
+                    </v-list-item-title>
+                  </v-list-item>
+                </v-list>
+                <v-list
+                  v-else
+                >
+                  <v-list-item>
+                    <v-list-item-title>
+                      <v-btn
+                        text
+                      >
+                        フォロー解除
+                      </v-btn>
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-title>
+                      <v-btn
+                        text
+                      >
+                        キャンセル
+                      </v-btn>
+                    </v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
             </div>
           </v-card-text>
           
@@ -74,6 +136,15 @@ export default {
   methods: {
     linkToShow() {
       this.$router.push({name:'showuser',params:{id:this.item.user_id}})
+    },
+    destroyPost(id) {
+      console.log(id)
+      this.$store.dispatch('destroyPost', {id})
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.user.current
     }
   }
   // computed: {

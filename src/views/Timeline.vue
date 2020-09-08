@@ -1,6 +1,7 @@
  <template>
   <div>
     <post-modal />
+		{{ currentUser }}
 		<div v-if="followeePosts!=null">
 			<post-card
 				v-for="post in followeePosts" 
@@ -47,6 +48,9 @@ export default {
 	computed: {
 		followeePosts() {
 			return this.$store.state.post.followeePosts
+		},
+		currentUser() {
+			return this.$store.state.user.current
 		}
 	},
 	mounted() {
