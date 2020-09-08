@@ -10,6 +10,8 @@ import store from './store'
 import axios from 'axios'
 import Vuex from 'vuex'
 import VueAxios from 'vue-axios'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
 
 Vue.config.productionTip = false
 
@@ -17,6 +19,7 @@ library.add(fas, far)
 
 Vue.use(Vuex, VueAxios, axios);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('v-select', vSelect)
 
 new Vue({
   render: h => h(App),

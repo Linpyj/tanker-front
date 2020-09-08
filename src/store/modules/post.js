@@ -19,8 +19,8 @@ mutations: {
 	}
 },
 actions: {
-	async createPost({commit}, {content}) {
-		const post = await axios.post('http://localhost:3000/posts/create', {content})
+	async createPost({commit}, {content, tag_list}) {
+    const post = await axios.post('http://localhost:3000/posts/create', {content, tag_list})
 		commit('setContent', post.data)
 	},
 	async fetchMyPosts({commit}, {id}) {
@@ -30,7 +30,6 @@ actions: {
 	async fetchOthersPosts({commit}) {
 		// followeeのpostsを取得するコントローラーを呼び出す
     const posts = await axios.get('http://localhost:3000/posts/timeline')
-    console.log(posts.data.posts)
 		commit('setFolloweePosts', posts.data.posts)
 	}
 	}

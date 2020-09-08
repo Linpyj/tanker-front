@@ -18,31 +18,17 @@
               :rules="[limit_length]"
               auto-grow
               counter="30"
-              label="短歌を記入してください。"
+              label="短歌を入力してください。"
               rows="1"
             ></v-textarea>
-            <v-autocomplete
-              v-model="tag"
-              :items="tags"
-              @click="selected.push(tag)"
-              hide-no-data
-              hide-selected
-              placeholder="タグを入力してください。"
-              return-object
-              multiple
-            >
-              <template v-slot:selection="data">
-                <v-chip
-                  :input-value="data.selected"
-                  close
-                  class="chip--select-multi"
-                  @input="addTag(data.item)"
-                  @click:close="removeTag(data.item)"
-                >
-                  {{ data.item }}
-                </v-chip>
-              </template>
-            </v-autocomplete>
+
+            <multiselect
+              v-model="selected"
+              :options="tags"
+              :multiple="true"
+              :close-on-select="true"
+              placeholder="タグを選択してください。">
+            </multiselect>
                         
 					</v-card-text>
 
@@ -71,7 +57,9 @@
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect'
 export default {
+  components: { Multiselect },
 	data() {
 		return {
       content: '',
@@ -81,7 +69,9 @@ export default {
         '日常',
         '生活'
       ],
-      selected: [],
+      selected: null,
+      selectedTags: [],
+      tagValue: '',
 
 			// 入力のバリデーション
 			limit_length: value => value.length <= 30 || "30文字以内で入力してください。"
@@ -90,36 +80,19 @@ export default {
 	methods: {
 		async registerContent() {
 			await this.$store.dispatch('createPost', {
-				content: this.content
+        content: this.content,
+        tag_list: this.selected
 			}
 				)
 			this.content = ''
-    },
-    addTag() {
-      // this.selected.push(item)
-      // console.log(this.selected)
-      console.log(this.tags)
-      console.log(this.selected)
-      console.log(this.data.selected)
-      console.log(this.item)
-    },
-    removeTag(item) {
-      const index = this.tags.indexOf(item)
-      if (index >= 0) this.tags.splice(index, 1)
     }
-	},
+  },
 	computed: {
 		getCurrent() {
 			return this.$store.state.user.current
-    },
-    selectedTags() {
-        const selectedTags = []
-
-        for (const tag of this.selected) {
-          selectedTags.push(tag)
-        }
-        return selectedTags
-      }
-	}
+    }
+  }
 }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
