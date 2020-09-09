@@ -32,9 +32,6 @@ actions: {
     const posts = await axios.get('http://localhost:3000/posts/timeline')
     console.log(posts)
 		commit('setFolloweePosts', posts.data.posts)
-  },
-  async destroyPost({id}) {
-    await axios.post(`http://localhost:3000/posts/${id}/destroy`)
   }
 	}
 }

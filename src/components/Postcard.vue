@@ -9,9 +9,6 @@
             class="headline pb-0"
             style="display:flex;"
           >
-            <!-- <v-btn
-              @click.native="linkToShow(item.id)"
-            > -->
             <router-link :to="{name:'showuser',params:{id:item.user_id}}">
               <img
                 src="https://i.pinimg.com/280x280_RS/45/33/95/453395e8b5fb023351521c680fe85bef.jpg"
@@ -19,7 +16,6 @@
                 style="border-radius: 50%"
               />
             </router-link>
-            <!-- </v-btn> -->
             <div>
               <div
                 class="ml-3"
@@ -59,7 +55,7 @@
                     <v-list-item-title>
                       <v-btn
                         text
-                        @click="destroyPost(item.id)"
+                        @click="destroyPost()"
                       >
                         削除
                       </v-btn>
@@ -83,6 +79,7 @@
                     <v-list-item-title>
                       <v-btn
                         text
+                        @click="destroyFollow()"
                       >
                         フォロー解除
                       </v-btn>
@@ -126,6 +123,8 @@
 
 <script>
 import moment from 'moment'
+import axios from 'axios'
+
 export default {
   props: ['item'],
   filters: {
@@ -137,9 +136,16 @@ export default {
     linkToShow() {
       this.$router.push({name:'showuser',params:{id:this.item.user_id}})
     },
-    destroyPost(id) {
+    async destroyPost() {
+      var id = this.item.id
       console.log(id)
-      this.$store.dispatch('destroyPost', {id})
+      await axios.post(`http://localhost:3000/posts/${id}/destroy`)
+    },
+    destroyFollow: function() {
+      var id = this.item.id
+      console.log(id)
+      // this.$store.dispatch('destroyFollow', {id: id})
+      axios.post(`http://localhost:3000/users/${id}/remove`)
     }
   },
   computed: {
