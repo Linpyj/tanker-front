@@ -84,7 +84,8 @@ export default {
         tag_list: this.selected
 			}
 				)
-			this.content = ''
+      this.content = ''
+      await this.$store.dispatch('fetchOthersPosts')
     }
   },
 	computed: {

@@ -16,6 +16,7 @@
                 style="border-radius: 50%"
               />
             </router-link>
+            {{ item }}
             <div>
               <div
                 class="ml-3"
@@ -139,8 +140,11 @@ export default {
     async destroyPost() {
       var id = this.item.id
       console.log(id)
+      var user_id = this.item.user_id
+      // ここまでok
       await axios.post(`http://localhost:3000/posts/${id}/destroy`)
       await this.$store.dispatch('fetchOthersPosts')
+      await this.$store.dispatch('fetchMyPosts', {id: user_id})
     },
     async destroyFollow() {
       var id = this.item.id
