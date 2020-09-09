@@ -6,7 +6,8 @@ export default {
 state: {
 		current: null,
 		token: null,
-		newUser: null
+		newUser: null,
+		thisUser: null
 },
 mutations: {
     setCurrent(state, payload) {
@@ -17,7 +18,10 @@ mutations: {
 		},
 		setNewUser(state, payload) {
 			state.newUser = payload
-		}
+		},
+		setThisUser(state, payload) {
+			state.thisUser = payload
+		},
 },
 actions: {
     async signin({commit}, {uid, password}) {
@@ -48,6 +52,11 @@ actions: {
 				password_confirmation: password_confirmation
 			})
 			commit('setNewUser', user)
-		} 
+    },
+    async fetchUser({commit}, {id}) {
+      const user = await axios.get(`http://localhost:3000/users/${id}`)
+      console.log(user.data.user)
+      commit('setThisUser', user.data.user)
+    } 
 }
 }

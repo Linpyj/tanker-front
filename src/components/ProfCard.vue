@@ -15,16 +15,17 @@
           <v-list-item-content>
             
             <v-list-item-title>
-              {{ user.name }}
+              {{ udata.name }}
             </v-list-item-title>
             <v-list-item-subtitle>
-              {{ user.uid }}
+              @{{ udata.uid }}
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 
         <v-card-text>
-          {{ user.intro }}
+          {{ udata.profile }}
+          {{ udata }}
         </v-card-text>
 
         <v-card-actions>
@@ -80,12 +81,13 @@
 
 <script>
 export default {
+  props:['udata'],
 	data: function() {
 		return {
 			user: {
         id: '5',
 				name: 'ケン吉田',
-				uid: '@kenyoshida',
+				uid: 'kenyoshida',
         intro: '私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。',
         followee: '3',
         follower: '5 billion'        

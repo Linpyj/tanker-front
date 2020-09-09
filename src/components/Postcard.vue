@@ -9,7 +9,20 @@
             class="headline pb-0"
             style="display:flex;"
           >
-            <router-link :to="{name:'showuser',params:{id:item.user_id}}">
+            <router-link
+              v-if="item.user_id!==currentUser.id"
+              :to="{name:'showuser',params:{id:item.user_id}}"
+            >
+              <img
+                src="https://i.pinimg.com/280x280_RS/45/33/95/453395e8b5fb023351521c680fe85bef.jpg"
+                height="50px;"
+                style="border-radius: 50%"
+              />
+            </router-link>
+            <router-link 
+              v-else
+              to="/mypage"
+            >
               <img
                 src="https://i.pinimg.com/280x280_RS/45/33/95/453395e8b5fb023351521c680fe85bef.jpg"
                 height="50px;"

@@ -1,6 +1,10 @@
  <template>
   <div>
-    <prof-card>ユーザーページ</prof-card>
+    <prof-card
+      :udata="user"
+    >
+      ユーザーページ
+    </prof-card>
     <div class="ml-10">
       {{ id }}
     </div>
@@ -36,12 +40,16 @@ export default {
       },
       id() {
         return this.$route.params['id']
+      },
+      user() {
+        return this.$store.state.user.thisUser
       }
     },
     mounted: function() {
       // this.$route.params['id']でuser_idが取得できるので、
       // userの情報とそのuserが持つpostsをfetch
-    }
+      this.$store.dispatch('fetchUser', {id: this.$route.params['id']})
+}
 
 }
 </script>

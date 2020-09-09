@@ -7,7 +7,9 @@
       {{ this.$store.state.post }}
     </div> -->
 
-    <prof-card />
+    <prof-card 
+      :udata="currentUser"
+    />
     
     <v-tabs
       v-model="tab"
@@ -81,6 +83,9 @@ export default {
     computed: {
       posts() {
         return this.$store.state.post.posts
+      },
+      currentUser() {
+        return this.$store.state.user.current
       }
     },
     mounted: function() {
