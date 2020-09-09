@@ -155,11 +155,15 @@
     </v-row>
 
 
-    <v-row justify="center" v-if="$mq==='sp'">
+    <v-row v-if="$mq==='sp'">
       <v-col cols="12">
-        <h2 class="ml-2 mt-5"><slot>マイページ</slot></h2>
-        <v-spacer />
-        <div class="mr-2">
+        <div class="flex">
+          <div>
+            <h2 
+              class="ml-2 mt-5"
+            ><slot>マイページ</slot></h2>
+          </div>
+          <v-spacer />
           <div
             v-if="udata.id!=currentUser.id"
           >
@@ -286,119 +290,7 @@
             <v-list-item-subtitle>
               @{{ udata.uid }}
             </v-list-item-subtitle>
-            <v-spacer />
-            <v-list-item-title>
-              <div>
-                <div
-                  v-if="udata.id!=currentUser.id"
-                >
-                  <v-btn
-                    v-if="!isFollowing"
-                    color="blue"
-                    text
-                    @click.native="createFollow"
-                  >
-                    フォローする
-                  </v-btn>
-                  <v-btn
-                    v-else
-                    color="black"
-                    text
-                    @click.native="removeFollow"
-                  >
-                    フォローしています
-                  </v-btn>
-                </div>
-                <div
-                  v-else
-                >
-                  <v-row
-                    justify="center"
-                  >
-                    <v-dialog
-                      v-model="dialog"
-                      width="500"
-                      class="mx-auto"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                          color="blue"
-                          text
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          プロフィールを編集
-                        </v-btn>
-                      </template>
-
-                      <v-card>
-                        <v-card-title class="headline grey lighten-2">
-                          プロフィール編集
-                        </v-card-title>
-
-                        <v-card-text>
-                          <v-form>
-                            <v-text-field
-                              v-model="name"
-                              label="ユーザー名"
-                            ></v-text-field>
-                            <v-text-field
-                              v-model="image_name"
-                              label="プロフィール画像"
-                            ></v-text-field>
-                            <v-text-field
-                              v-model="profile"
-                              label="自己紹介文"
-                            ></v-text-field>
-
-
-                            <v-checkbox v-model="v0" label="パスワードを変更"></v-checkbox>
-                            <v-banner v-model="v0" single-line transition="slide-y-transition">
-                              <v-text-field
-                                v-model="old_password"
-                                type="password"
-                                label="古いパスワード"
-                              ></v-text-field>
-                              <v-text-field
-                                v-model="new_password"
-                                type="password"
-                                label="新しいパスワード"
-                              ></v-text-field>
-                              <v-text-field
-                                v-model="new_password_confirmation"
-                                type="password"
-                                label="新しいパスワードを再度入力"
-                              ></v-text-field>
-                            </v-banner>
-                          </v-form>
-                        </v-card-text>
-                        <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <v-btn
-                            v-if="this.name||this.image_name||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation)"
-                            class="mr-4"
-                            text
-                            color="blue"
-                            @click.native="updateUser"
-                          >
-                            編集を完了
-                          </v-btn>
-                          <v-btn
-                            v-else
-                            class="mr-4"
-                            style="pointer-events:none;"
-                            text
-                            color="black"
-                          >
-                            編集を完了
-                          </v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </v-dialog>
-                  </v-row>
-                </div>
-              </div>
-            </v-list-item-title>
+            
           </v-list-item-content>
         </v-list-item>
 
@@ -474,16 +366,9 @@ export default {
       var image_name = this.image_name
       var profile = this.profile
       var old_password = this.old_password
-      var new_password = this.new_password
-      var new_password_confirmation = this.new_password_confirmation
-      console.log(name)
-      console.log(!image_name)
-      console.log(!profile)
-      console.log(!new_password)
-      console.log(!new_password_confirmation)
-      console.log(!old_password)
-
-      if (!new_password) {
+      var password = this.new_password
+      var password_confirmation = this.new_password_confirmation
+      if (!password) {
         this.$store.dispatch('updateUser', {
           name,
           image_name,
@@ -495,8 +380,8 @@ export default {
           image_name, 
           profile,
           old_password,
-          new_password,
-          new_password_confirmation
+          password,
+          password_confirmation
         })
       }
     }
