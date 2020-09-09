@@ -12,12 +12,20 @@ import Vuex from 'vuex'
 import VueAxios from 'vue-axios'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
+import VueMq from 'vue-mq'
 
 Vue.config.productionTip = false
 
 library.add(fas, far)
 
 Vue.use(Vuex, VueAxios, axios);
+Vue.use(VueMq, {
+  breakpoints: {
+    sp: 959,
+    pc: 500
+  },
+  defaultBreakpoint: 'sp'
+});
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('v-select', vSelect)
 
