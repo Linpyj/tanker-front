@@ -2,7 +2,7 @@
   <div>
     <post-modal />
 		<div v-if="followeePosts!=null">
-			<post-card
+			<post-content
 				v-for="post in followeePosts" 
 				:key="post.id"
 				:item="post"
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import PostCard from '@/components/PostCard.vue'
+import PostContent from '@/components/PostContent.vue'
 import PostModal from '@/components/PostModal.vue'
 
 export default {
@@ -41,7 +41,7 @@ export default {
 		}
 	},
 	components: {
-			PostCard,
+			PostContent,
 			PostModal
 	},
 	computed: {

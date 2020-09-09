@@ -8,7 +8,7 @@
     <div class="ml-10">
       {{ id }}
     </div>
-    <post-card
+    <post-content
       v-for="post in posts"
       :key="post.id"
       :item="post"
@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import PostCard from '@/components/PostCard.vue'
+import PostContent from '@/components/PostContent.vue'
 import ProfCard from '@/components/ProfCard.vue'
 
 export default {
     name: 'ShowUser',
     components: {
-      PostCard,
+      PostContent,
       ProfCard
     },
     methods: {

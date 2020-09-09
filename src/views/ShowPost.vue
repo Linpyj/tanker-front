@@ -1,14 +1,14 @@
 <template>
-	<post-card />
+	<post-content />
 </template>
 
 <script>
-import PostCard from '@/components/PostCard.vue'
+import PostContent from '@/components/PostContent.vue'
 
 export default {
 	props: ['post'],
 	components: {
-		PostCard
+		PostContent
 	}
 }
 </script>

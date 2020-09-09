@@ -37,7 +37,7 @@
       v-model="tab"
     >
       <v-tab-item>
-        <post-card
+        <post-content
           v-for="post in posts" 
           :key="post.id"
           :item="post"
@@ -46,7 +46,7 @@
       </v-tab-item>
       <v-tab-item>
         <h1>Tab2の内容ですよ</h1>
-        <post-card 
+        <post-content
           v-for="post in posts" 
           :key="post.id"
           class="py-0"
@@ -58,13 +58,13 @@
 </template>
 
 <script>
-import PostCard from '@/components/PostCard.vue'
+import PostContent from '@/components/PostContent.vue'
 import ProfCard from '@/components/ProfCard.vue'
 
 export default {
     name: 'Mypage',
     components: {
-      PostCard,
+      PostContent,
       ProfCard
     },
     data() {

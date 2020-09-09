@@ -17,6 +17,5 @@ module.exports = {
       },
       disableHostCheck: true
     }
-  },
-  plugins: ['~/plugins/vue-mq'],
+  }
 }
