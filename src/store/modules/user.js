@@ -57,6 +57,24 @@ actions: {
       const user = await axios.get(`http://localhost:3000/users/${id}`)
       console.log(user.data.user)
       commit('setThisUser', user.data.user)
-    } 
+    },
+    async updateUser({state}, {name, 
+      image_name, 
+      profile,
+      old_password,
+      new_password,
+      new_password_confirmation}) {
+        var id = state.current.id
+        const user = await axios.post(`http://localhost:3000/users/${id}/update`, {
+          name,
+          image_name, 
+          profile,
+          old_password,
+          new_password,
+          new_password_confirmation
+        })
+        console.log(user)
+        // commit('setCurrentUser', )
+      }
 }
 }

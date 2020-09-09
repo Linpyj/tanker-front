@@ -130,6 +130,7 @@
                       class="mr-4"
                       text
                       color="blue"
+                      @click.native="updateUser"
                     >
                       編集を完了
                     </v-btn>
@@ -196,6 +197,22 @@ export default {
       var id = this.user.id
       this.$store.dispatch('removeFollow', {id})
     },
+    updateUser() {
+      var name = this.name
+      var image_name = this.image_name
+      var profile = this.profile
+      var old_password = this.old_password
+      var new_password = this.new_password
+      var new_password_confirmation = this.new_password_confirmation
+      this.$store.dispatch('updateUser', {
+        name, 
+        image_name, 
+        profile,
+        old_password,
+        new_password,
+        new_password_confirmation
+      })
+    }
     // linkToConfig: function() {
     //   this.$router.push('/config')
     // }
