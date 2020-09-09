@@ -29,13 +29,13 @@
                 style="border-radius: 50%"
               />
             </router-link>
-            {{ item }}
+            <!-- {{ item }} -->
             <div>
               <div
                 class="ml-3"
               >
                 {{ item.content }}
-                {{ item.user_id }}
+                <!-- {{ item.user_id }} -->
               </div>
               <div>
                 <v-chip

@@ -25,7 +25,7 @@
 
         <v-card-text>
           {{ udata.profile }}
-          {{ udata }}
+          <!-- {{ udata }} -->
         </v-card-text>
 
         <v-card-actions>
@@ -41,7 +41,7 @@
           </v-btn>
           <v-spacer />
           <div
-            v-if="user.id!=currentUser.id"
+            v-if="udata.id!=currentUser.id"
           >
             <v-btn
               v-if="!isFollowing"
@@ -63,13 +63,89 @@
           <div
             v-else
           >
-            <v-btn
-              color="blue"
-              text
-              @click.native="linkToConfig"
+            <v-row
+              justify="center"
             >
-              プロフィールを編集
-            </v-btn>
+              <v-dialog
+                v-model="dialog"
+                width="500"
+                class="mx-auto"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    color="blue"
+                    text
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    プロフィールを編集
+                  </v-btn>
+                </template>
+
+                <v-card>
+                  <v-card-title class="headline grey lighten-2">
+                    プロフィール編集
+                  </v-card-title>
+
+                  <v-card-text>
+                    <v-form>
+                      <v-text-field
+                        v-model="name"
+                        label="ユーザー名"
+                      ></v-text-field>
+                      <v-text-field
+                        v-model="image_name"
+                        label="プロフィール画像"
+                      ></v-text-field>
+                      <v-text-field
+                        v-model="profile"
+                        label="自己紹介文"
+                      ></v-text-field>
+
+
+                      <v-checkbox v-model="v0" label="パスワードを変更"></v-checkbox>
+                      <v-banner v-model="v0" single-line transition="slide-y-transition">
+                        <v-text-field
+                          v-model="old_password"
+                          type="password"
+                          label="古いパスワード"
+                        ></v-text-field>
+                        <v-text-field
+                          v-model="new_password"
+                          type="password"
+                          label="新しいパスワード"
+                        ></v-text-field>
+                        <v-text-field
+                          v-model="new_password_confirmation"
+                          type="password"
+                          label="新しいパスワードを再度入力"
+                        ></v-text-field>
+                      </v-banner>
+                    </v-form>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      v-if="this.name||this.image_name||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation)"
+                      class="mr-4"
+                      text
+                      color="blue"
+                    >
+                      編集を完了
+                    </v-btn>
+                    <v-btn
+                      v-else
+                      class="mr-4"
+                      style="pointer-events:none;"
+                      text
+                      color="black"
+                    >
+                      編集を完了
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-row>
           </div>
         </v-card-actions>
 
@@ -82,7 +158,7 @@
 <script>
 export default {
   props:['udata'],
-	data: function() {
+	data() {
 		return {
 			user: {
         id: '5',
@@ -91,7 +167,16 @@ export default {
         intro: '私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。',
         followee: '3',
         follower: '5 billion'        
-			}
+      },
+      dialog: '',
+
+      name: '',
+      image_name: '',
+      profile: '',
+      old_password: '',
+      new_password: '',
+      new_password_confirmation: '',
+      v0: false
 		}
   },
   computed: {
@@ -111,9 +196,9 @@ export default {
       var id = this.user.id
       this.$store.dispatch('removeFollow', {id})
     },
-    linkToConfig: function() {
-      this.$router.push('/config')
-    }
+    // linkToConfig: function() {
+    //   this.$router.push('/config')
+    // }
   }
 }
 </script>
