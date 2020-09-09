@@ -140,12 +140,14 @@ export default {
       var id = this.item.id
       console.log(id)
       await axios.post(`http://localhost:3000/posts/${id}/destroy`)
+      await this.$store.dispatch('fetchOthersPosts')
     },
-    destroyFollow: function() {
+    async destroyFollow() {
       var id = this.item.id
       console.log(id)
       // this.$store.dispatch('destroyFollow', {id: id})
       axios.post(`http://localhost:3000/users/${id}/remove`)
+      await this.$store.dispatch('fetchOthersPosts')
     }
   },
   computed: {
