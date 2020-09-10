@@ -139,6 +139,7 @@ export default {
 			}
 				)
       this.content = ''
+      this.selected = ''
       await this.$store.dispatch('fetchOthersPosts')
     }
   },

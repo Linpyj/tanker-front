@@ -7,7 +7,8 @@ state: {
 		current: null,
 		token: null,
 		newUser: null,
-		thisUser: null
+    thisUser: null,
+    thisUserPosts: []
 },
 mutations: {
     setCurrent(state, payload) {
@@ -21,7 +22,10 @@ mutations: {
 		},
 		setThisUser(state, payload) {
 			state.thisUser = payload
-		},
+    },
+    setThisUserPosts(state, payload) {
+      state.thisUserPosts = payload
+    }
 },
 actions: {
     async signin({commit}, {uid, password}) {
@@ -56,7 +60,9 @@ actions: {
     async fetchUser({commit}, {id}) {
       const user = await axios.get(`http://localhost:3000/users/${id}`)
       console.log(user.data.user)
+      console.log(user.data.posts)
       commit('setThisUser', user.data.user)
+      commit('setThisUserPosts', user.data.posts)
     },
     async updateUser({state}, {name, 
       image_name, 

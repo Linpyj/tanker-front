@@ -164,6 +164,8 @@
             ><slot>マイページ</slot></h2>
           </div>
           <v-spacer />
+          {{ udata.id }}
+          {{ currentUser.id }}
           <div
             v-if="udata.id!=currentUser.id"
           >

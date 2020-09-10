@@ -27,9 +27,12 @@ actions: {
   async createFollow({commit, state}, {id}) {
     // idは相手ユーザーのuser_id
     // このstoreのstateにはuser_idのみいれる
+    console.log('ok')
     console.log(typeof state.myFollowee)
-    await axios.post(`http://localhost:3000/users/${id}/follow`)
+    console.log(state.myFollowee)
+    const currentUser = await axios.post(`http://localhost:3000/users/${id}/follow`)
     commit('addMyFollowee', id)
+    commit('setCurernt', currentUser)
     console.log(state.myFollowee)
     commit('changeStatus')
   },
