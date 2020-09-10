@@ -8,7 +8,6 @@ import MyPage from '@/views/MyPage.vue'
 import ShowPost from '@/views/ShowPost.vue'
 import Recommend from '@/views/Recommend.vue'
 import ShowUser from '@/views/ShowUser.vue'
-import Config from '@/views/Config.vue'
 
 Vue.use(Router)
 
@@ -47,10 +46,6 @@ export default new Router({
       name: 'showuser',
       path: '/showuser/:id',
       component: ShowUser
-    },
-    {
-      path: '/config',
-      component: Config
     }
   ]
 })

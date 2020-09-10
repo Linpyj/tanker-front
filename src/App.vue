@@ -49,16 +49,6 @@
               <v-list-item-title>マイページ</v-list-item-title>
             </v-list-item>
 
-            <v-list-item
-              text
-              @click.native="linkToConfig"
-            >
-              <v-list-item-icon>
-                <v-icon>mdi-cog</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>設定</v-list-item-title>
-            </v-list-item>
-
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
@@ -85,13 +75,6 @@ export default {
     },
     linkToMypage: function() {
       this.$router.push('/mypage').catch(error => {
-        if (error.name != "NavigationDuplicated") {
-          throw error;
-          }
-        })
-    },
-    linkToConfig: function() {
-      this.$router.push('/config').catch(error => {
         if (error.name != "NavigationDuplicated") {
           throw error;
           }
