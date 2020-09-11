@@ -31,11 +31,12 @@ actions: {
     console.log(typeof state.myFollowee)
     console.log(state.myFollowee)
     console.log(typeof parseInt(id))
-    // ここでエラーを吐く
     const currentUser = await axios.post(`http://localhost:3000/users/${id}/follow`)
     console.log(currentUser.data.user)
+    // ここでエラーを吐く
     commit('addMyFollowee', parseInt(id))
-    // フォロー数を新しくしたcurrentUserを新たにセットする
+    // フォロー数を新しくしたcurrentUserを新たにセットする。
+    // 別のstoreにアクセスする方法が知りたい
     commit('setCurernt', currentUser, {root: true})
     console.log(state.myFollowee)
     commit('changeStatus')

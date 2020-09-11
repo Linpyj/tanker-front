@@ -59,8 +59,6 @@ actions: {
     },
     async fetchUser({commit}, {id}) {
       const user = await axios.get(`http://localhost:3000/users/${id}`)
-      console.log(user.data.user)
-      console.log(user.data.posts)
       commit('setThisUser', user.data.user)
       commit('setThisUserPosts', user.data.posts)
     },
