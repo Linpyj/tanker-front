@@ -12,7 +12,7 @@ mutations: {
     state.status = !state.status
   },
 	addMyFollowee(state, payload) {
-		state.myFollowee.push(payload)
+    state.myFollowee.push(payload)
 	},
   addMyFollower(state, payload) {
 		state.myFollower.push(payload)
@@ -30,9 +30,13 @@ actions: {
     console.log('ok')
     console.log(typeof state.myFollowee)
     console.log(state.myFollowee)
+    console.log(typeof parseInt(id))
+    // ここでエラーを吐く
     const currentUser = await axios.post(`http://localhost:3000/users/${id}/follow`)
-    commit('addMyFollowee', id)
-    commit('setCurernt', currentUser)
+    console.log(currentUser.data.user)
+    commit('addMyFollowee', parseInt(id))
+    // フォロー数を新しくしたcurrentUserを新たにセットする
+    commit('setCurernt', currentUser, {root: true})
     console.log(state.myFollowee)
     commit('changeStatus')
   },
@@ -43,8 +47,7 @@ actions: {
     const newArray = state.myFollowee.filter(n => n != id)
     commit('setMyFollowee', newArray)
     commit('changeStatus')
-  },
+  }
 
-  // フォローされる
 	}
 }
