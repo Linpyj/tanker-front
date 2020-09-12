@@ -9,13 +9,14 @@
         <v-list-item>
           <v-list-item-avatar>
             <v-img
-              src="https://prtimes.jp/i/22901/578/resize/d22901-578-199927-0.jpg"
+              src="udata.image_name.url"
             />
           </v-list-item-avatar>
           <v-list-item-content>
             
             <v-list-item-title>
               {{ udata.name }}
+
             </v-list-item-title>
             <v-list-item-subtitle>
               @{{ udata.uid }}
@@ -25,19 +26,24 @@
 
         <v-card-text>
           {{ udata.profile }}
-          <!-- {{ udata }} -->
+          <br>
+          <br>
+          {{ udata }}
+          <br>
+          <br>
+          {{ udata.image_name.url }}
         </v-card-text>
 
         <v-card-actions>
           <v-btn
             text
           >
-            {{ user.followee }} フォロー
+            {{ udata.followee_count }} フォロー
           </v-btn>
           <v-btn
             text
           >
-            {{ user.follower }} フォロワー
+            {{ udata.follower_count }} フォロワー
           </v-btn>
           <v-spacer />
           <div
@@ -153,6 +159,10 @@
         </v-card>
       </v-col>
     </v-row>
+
+
+
+
 
 
     <v-row v-if="$mq==='sp'">
@@ -299,6 +309,7 @@
 
         <v-card-text>
           {{ udata.profile }}
+
           <!-- {{ udata }} -->
         </v-card-text>
 
@@ -306,12 +317,12 @@
           <v-btn
             text
           >
-            {{ user.followee }} フォロー
+            {{ udata.followee_count }} フォロー
           </v-btn>
           <v-btn
             text
           >
-            {{ user.follower }} フォロワー
+            {{ udata.follower_count }} フォロワー
           </v-btn>
           
         </v-card-actions>
