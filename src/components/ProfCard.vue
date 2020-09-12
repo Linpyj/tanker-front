@@ -358,6 +358,7 @@ export default {
     createFollow: function() {
       var id = this.user.id
       this.$store.dispatch('createFollow', {id})
+      this.$store.dispatch('fetchUser', {id})
     },
     removeFollow: function() {
       var id = this.user.id
