@@ -7,6 +7,7 @@
     </prof-card>
     <div class="ml-10">
       {{ id }}
+      {{ this.$route.params['id'] }}
     </div>
     <post-content
       v-for="post in posts"
@@ -14,6 +15,7 @@
       :item="post"
       class="py-0"
     />
+
 
     
   </div>

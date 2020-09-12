@@ -175,7 +175,6 @@
           </div>
           <v-spacer />
           {{ udata.id }}
-          {{ currentUser.id }}
           <div
             v-if="udata.id!=currentUser.id"
           >
@@ -362,18 +361,20 @@ export default {
       return this.$store.state.user.current
     },
     isFollowing() {
-      return this.$store.state.follow.state
+      return this.$store.state.user.follow_status
     }
   },
   methods: {
-    createFollow: function() {
-      var id = this.user.id
+    createFollow() {
+      var id = this.$route.params['id']
       this.$store.dispatch('createFollow', {id})
       this.$store.dispatch('fetchUser', {id})
     },
-    removeFollow: function() {
-      var id = this.user.id
+    removeFollow() {
+      var id = this.$route.params['id']
+      // console.log(this.$route.params['id'])
       this.$store.dispatch('removeFollow', {id})
+      this.$store.dispatch('fetchUser', {id})
     },
     updateUser() {
       var name = this.name

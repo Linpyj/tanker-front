@@ -7,7 +7,8 @@ state: {
 		current: null,
 		token: null,
     thisUser: null,
-    thisUserPosts: []
+    thisUserPosts: [],
+    follow_status: false
 },
 mutations: {
     setCurrent(state, payload) {
@@ -24,6 +25,9 @@ mutations: {
     },
     setThisUserPosts(state, payload) {
       state.thisUserPosts = payload
+    },
+    setFollowStatus(state, payload) {
+      state.follow_status = payload
     }
 },
 actions: {
@@ -47,9 +51,10 @@ actions: {
 
 },
 		signout({commit}) {
-        sessionStorage.clear()
-				commit('setCurrent', null)
-			},
+      sessionStorage.clear()
+      commit('setCurrent', null)
+    },
+
 		async signup({commit}, {uid, name, password, password_confirmation}) {
       sessionStorage.clear()
 			const user = await axios.post('http://localhost:3000/users/create', {
@@ -62,12 +67,16 @@ actions: {
       console.log(user.data.user)
 			commit('setCurrent', user.data.user)
     },
+
     async fetchUser({commit}, {id}) {
       const user = await axios.get(`http://localhost:3000/users/${id}`)
-      console.log(user.data.user)
+      console.log('user.data in user.js')
+      console.log(user.data)
       commit('setThisUser', user.data.user)
       commit('setThisUserPosts', user.data.posts)
+      commit('setFollowStatus', user.data.follow_status)
     },
+
     async updateUser({state}, {name, 
       image_name, 
       profile,
