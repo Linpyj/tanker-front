@@ -72,6 +72,7 @@ actions: {
       const user = await axios.get(`http://localhost:3000/users/${id}`)
       console.log('user.data in user.js')
       console.log(user.data)
+      console.log(user.data.follow_status)
       commit('setThisUser', user.data.user)
       commit('setThisUserPosts', user.data.posts)
       commit('setFollowStatus', user.data.follow_status)

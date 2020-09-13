@@ -30,7 +30,6 @@ actions: {
     const currentUser = await axios.post(`http://localhost:3000/users/${id}/follow`)
     console.log('currentUser in follow.js')
     console.log(currentUser.data.user)
-    // フォロー数を新しくしたcurrentUserを新たにセットする。
     // 別のstoreにアクセスする方法が知りたい
     commit('setCurrent', currentUser, {root: true})
     // console.log(state.myFollowee)
