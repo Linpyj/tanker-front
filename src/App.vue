@@ -49,6 +49,24 @@
               <v-list-item-title>マイページ</v-list-item-title>
             </v-list-item>
 
+            <v-list-item
+              text
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-exit-to-app </v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>ログアウト</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item
+              text
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-exit-run</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>退会する</v-list-item-title>
+            </v-list-item>
+
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>

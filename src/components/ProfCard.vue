@@ -361,7 +361,7 @@ export default {
       return this.$store.state.user.current
     },
     isFollowing() {
-      return this.$store.state.user.follow_status
+      return this.$store.state.follow.status
     }
   },
   methods: {
@@ -372,6 +372,7 @@ export default {
     },
     removeFollow() {
       var id = this.$route.params['id']
+      console.log(id)
       // console.log(this.$route.params['id'])
       this.$store.dispatch('removeFollow', {id})
       this.$store.dispatch('fetchUser', {id})
