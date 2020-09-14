@@ -7,7 +7,9 @@ state: {
 		current: null,
 		token: null,
     thisUser: null,
-    thisUserPosts: []
+    thisUserPosts: [],
+    thisUserFollowerCount: null,
+    thisUserFollowCount: null
 },
 mutations: {
     setCurrent(state, payload) {
@@ -24,7 +26,13 @@ mutations: {
     },
     setThisUserPosts(state, payload) {
       state.thisUserPosts = payload
-    }
+    },
+    setThisUserFollowerCount(state, payload) {
+      state.thisUserFollowerCount = payload
+    },
+    setThisUserFollowCount(state, payload) {
+      state.thisUserFollowCount = payload
+    },
 },
 actions: {
     
@@ -68,9 +76,13 @@ actions: {
       const user = await axios.get(`http://localhost:3000/users/${id}`)
       console.log('user.data in user.js')
       console.log(user.data)
+      console.log(user.data.follow_status)
       console.log(id)
       commit('setThisUser', user.data.user)
       commit('setThisUserPosts', user.data.posts)
+      commit('setStatus', user.data.follow_status, {root: true})
+      commit('setThisUserFollowerCount', user.data.follower_count)
+      commit('setThisUserFollowCount', user.data.follow_count)
     },
 
     async updateUser({state}, {name, 

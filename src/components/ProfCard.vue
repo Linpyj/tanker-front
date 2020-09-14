@@ -31,6 +31,9 @@
           {{ udata }}
           <br>
           <br>
+          {{ currentUser }}
+          <br>
+          <br>
           {{ udata.image_name.url }}
         </v-card-text>
 
@@ -38,12 +41,12 @@
           <v-btn
             text
           >
-            {{ udata.followee_count }} フォロー
+            {{ follow_count }} フォロー
           </v-btn>
           <v-btn
             text
           >
-            {{ udata.follower_count }} フォロワー
+            {{ follower_count }} フォロワー
           </v-btn>
           <v-spacer />
           <div
@@ -174,7 +177,9 @@
             ><slot>マイページ</slot></h2>
           </div>
           <v-spacer />
-          {{ udata.id }}
+          {{ udata }}
+          <br>
+          {{ currentUser }}
           <div
             v-if="udata.id!=currentUser.id"
           >
@@ -316,12 +321,12 @@
           <v-btn
             text
           >
-            {{ udata.followee_count }} フォロー
+            {{ follow_count }} フォロー
           </v-btn>
           <v-btn
             text
           >
-            {{ udata.follower_count }} フォロワー
+            {{ follower_count }} フォロワー
           </v-btn>
           
         </v-card-actions>
@@ -362,20 +367,24 @@ export default {
     },
     isFollowing() {
       return this.$store.state.follow.status
+    },
+    follower_count() {
+      return this.$store.state.user.thisUserFollowerCount
+    },
+    follow_count() {
+      return this.$store.state.user.thisUserFollowCount
     }
   },
   methods: {
     createFollow() {
       var id = this.$route.params['id']
       this.$store.dispatch('createFollow', {id})
-      this.$store.dispatch('fetchUser', {id})
     },
     removeFollow() {
       var id = this.$route.params['id']
       console.log(id)
       // console.log(this.$route.params['id'])
       this.$store.dispatch('removeFollow', {id})
-      this.$store.dispatch('fetchUser', {id})
     },
     updateUser() {
       var name = this.name

@@ -133,6 +133,11 @@
       </v-col>
     </v-row>
 
+
+
+
+
+
     <v-row justify="center" v-if="$mq==='sp'">
       <v-col cols="12" class="py-0">
         <v-card
@@ -162,7 +167,6 @@
                 style="border-radius: 50%"
               />
             </router-link>
-            <!-- {{ item }} -->
             <div>
               <div
                 class="ml-3"

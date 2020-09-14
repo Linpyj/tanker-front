@@ -7,7 +7,6 @@
     </prof-card>
     <div class="ml-10">
       {{ id }}
-      {{ this.$route.params['id'] }}
     </div>
     <post-content
       v-for="post in posts"
@@ -47,7 +46,7 @@ export default {
         return this.$store.state.user.thisUser
       }
     },
-    mounted: function() {
+    mounted() {
       // this.$route.params['id']でuser_idが取得できるので、
       // userの情報とそのuserが持つpostsをfetch
       this.$store.dispatch('fetchUser', {id: this.$route.params['id']})
