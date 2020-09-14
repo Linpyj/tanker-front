@@ -88,7 +88,8 @@ export default {
         return this.$store.state.user.current
       }
     },
-    mounted: function() {
+    mounted() {
+      this.$store.dispatch('fetchUser', {id: this.$store.state.user.current.id })
       this.$store.dispatch('fetchMyPosts', { id: this.$store.state.user.current.id })
     }
 
