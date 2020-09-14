@@ -2,7 +2,7 @@
   <v-container>
       <v-row justify="center" v-if="$mq==='pc'">
         <v-col cols="7">
-          <h2 class="mt-5 ml-2">ログインよ</h2>
+          <h2 class="mt-5 ml-2">ログイン</h2>
           <v-card
             class="mx-auto"
           >
@@ -56,7 +56,7 @@
 
       <v-row justify="center" v-if="$mq==='sp'">
         <v-col cols="12">
-          <h2 class="mt-5 ml-2">ログインよ</h2>
+          <h2 class="mt-5 ml-2">ログイン</h2>
           <v-card
             class="mx-auto"
           >
