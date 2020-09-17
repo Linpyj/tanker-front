@@ -38,7 +38,7 @@ actions: {
     
     async signin({commit}, {uid, password}) {
       sessionStorage.clear()
-      const user = await axios.post('http://localhost:3000/api/login', {
+      const user = await axios.post('/api/login', {
 				uid, 
 				password
         },
