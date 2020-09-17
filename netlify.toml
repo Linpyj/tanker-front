@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "https://vigorous-lamport-f0e2a6.netlify.app/api"
-  to = "https://guarded-wildwood-22546.herokuapp.com"
-  status = 200
-  force = true
