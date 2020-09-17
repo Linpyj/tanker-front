@@ -12,6 +12,9 @@ module.exports = {
       // },
       //　追記ここまで
       // 9/17
+      axios: {
+        baseURL: process.env.BASE_URL	|| '/'	// 追記
+      },
       proxy: {
         "/api/": {
           target: process.env.NODE_ENV === 'development' ? "http://localhost:3000" : "https://guarded-wildwood-22546.herokuapp.com"
