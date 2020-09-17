@@ -14,7 +14,7 @@ actions: {
 
   // フォローする
   async createFollow({commit}, {id}) {
-    const res = await axios.post(`http://localhost:3000/api/users/${id}/follow`)
+    const res = await axios.post(`/api/users/${id}/follow`)
     console.log('currentUser in follow.js')
     console.log(res.data)
     commit('setCurrent', res.data.user, {root: true})
@@ -26,7 +26,7 @@ actions: {
   async removeFollow({commit}, {id}) {
     console.log('ok')
     console.log(id)
-    const res = await axios.post(`http://localhost:3000/api/users/${id}/remove`)
+    const res = await axios.post(`/api/users/${id}/remove`)
     console.log('あああ')
     console.log(res.data)
     console.log(res.data.user)
