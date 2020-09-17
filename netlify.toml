@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api"
+  to = "https://guarded-wildwood-22546.herokuapp.com"
+  status = 200
+  force = true
