@@ -38,7 +38,7 @@ actions: {
     
     async signin({commit}, {uid, password}) {
       sessionStorage.clear()
-      const user = await axios.post('http://localhost:3000/login', {
+      const user = await axios.post('/api/login', {
 				uid, 
 				password
         },
@@ -61,7 +61,7 @@ actions: {
 
 		async signup({commit}, {uid, name, password, password_confirmation}) {
       sessionStorage.clear()
-			const user = await axios.post('http://localhost:3000/users/create', {
+			const user = await axios.post('/api/users/create', {
 				uid: uid,
 				name: name,
 				password: password,
@@ -73,7 +73,7 @@ actions: {
     },
 
     async fetchUser({commit}, {id}) {
-      const user = await axios.get(`http://localhost:3000/users/${id}`)
+      const user = await axios.get(`/api/users/${id}`)
       console.log('user.data in user.js')
       console.log(user.data)
       console.log(user.data.follow_status)
@@ -92,7 +92,7 @@ actions: {
       new_password,
       new_password_confirmation}) {
         var id = state.current.id
-        const user = await axios.post(`http://localhost:3000/users/${id}/update`, {
+        const user = await axios.post(`/api/users/${id}/update`, {
           name,
           image_name, 
           profile,
