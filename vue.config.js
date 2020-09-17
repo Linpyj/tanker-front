@@ -24,7 +24,8 @@ module.exports = {
         //   target: process.env.NODE_ENV === 'production' ? "https://guarded-wildwood-22546.herokuapp.com" : "http://localhost:3000"
         // }
         "/api/": {
-          target: "https://guarded-wildwood-22546.herokuapp.com"
+          target: process.env.NODE_ENV === 'production' ? "https://guarded-wildwood-22546.herokuapp.com" : "http://localhost:3000",
+          changeOrigin: true
         }
       },
       // host: 'localhost',
