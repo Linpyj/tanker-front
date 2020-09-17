@@ -115,8 +115,26 @@
           
           <v-card-actions
             class="pt-0">
-            <v-btn text icon color="lighten-5">
+            <v-btn 
+              v-if="!!isLike"
+              @click.native="removeLike"
+              text 
+              icon 
+              color="pink"
+            >
               <v-icon style="opacity:0.6">mdi-heart</v-icon>
+            </v-btn>
+            <v-btn 
+              v-else
+              @click.native="createLike"
+              text 
+              icon 
+              color="lighten-5"
+            >
+              <v-icon style="opacity:0.6">mdi-heart</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon style="opacity:0.6">mdi-message-text</v-icon>
             </v-btn>
             <v-btn icon>
               <v-icon style="opacity:0.6">mdi-message-text</v-icon>
@@ -252,7 +270,22 @@
           
           <v-card-actions
             class="pt-0">
-            <v-btn text icon color="lighten-5">
+            <v-btn 
+              v-if="!!isLike"
+              @click.native="removeLike"
+              text 
+              icon 
+              color="pink"
+            >
+              <v-icon style="opacity:0.6">mdi-heart</v-icon>
+            </v-btn>
+            <v-btn 
+              v-else
+              @click.native="createLike"
+              text 
+              icon 
+              color="lighten-5"
+            >
               <v-icon style="opacity:0.6">mdi-heart</v-icon>
             </v-btn>
             <v-btn icon>
@@ -302,11 +335,22 @@ export default {
       // this.$store.dispatch('destroyFollow', {id: id})
       axios.post(`http://localhost:3000/users/${id}/remove`)
       await this.$store.dispatch('fetchOthersPosts')
-    }
+    },
+    // async createLike() {
+    //   var id = this.item.id
+    //   await this.$store.dispatch('createLikes', {id})
+    // },
+    // async removeLike() {
+    //   var id = this.item.id
+    //   await this.$store.dispatch('deleteLikes', {id})
+    // },
   },
   computed: {
     currentUser() {
       return this.$store.state.user.current
+    },
+    isLike() {
+      return this.$store.state.post.likeStatus
     }
   }
   // computed: {
