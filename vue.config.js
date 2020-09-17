@@ -17,7 +17,7 @@ module.exports = {
           target: process.env.NODE_ENV === 'development' ? "http://localhost:3000" : "https://guarded-wildwood-22546.herokuapp.com"
         }
       },
-      host: 'localhost',
+      // host: 'localhost',
       watchOptions: {
         poll: true
       },
