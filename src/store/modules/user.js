@@ -39,7 +39,7 @@ actions: {
     async signin({commit}, {uid, password}) {
       sessionStorage.clear()
       // const user = await axios.post('https://guarded-wildwood-22546.herokuapp.com/api/login', {
-      const user = await axios.post('/api/login', {
+      const user = await axios.post(process.env.VUE_APP_BASE_API+'/api/login', {
 				uid, 
 				password
         },
