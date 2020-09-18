@@ -62,7 +62,7 @@ actions: {
 
 		async signup({commit}, {uid, name, password, password_confirmation}) {
       sessionStorage.clear()
-			const user = await axios.post('/api/users/create', {
+			const user = await axios.post(process.env.VUE_APP_BASE_API+'/api/users/create', {
 				uid: uid,
 				name: name,
 				password: password,
