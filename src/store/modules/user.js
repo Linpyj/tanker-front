@@ -74,7 +74,7 @@ actions: {
     },
 
     async fetchUser({commit}, {id}) {
-      const user = await axios.get(`/api/users/${id}`)
+      const user = await axios.get(process.env.VUE_APP_BASE_API+`/api/users/${id}`)
       console.log('user.data in user.js')
       console.log(user.data)
       console.log(user.data.follow_status)
@@ -93,7 +93,7 @@ actions: {
       new_password,
       new_password_confirmation}) {
         var id = state.current.id
-        const user = await axios.post(`/api/users/${id}/update`, {
+        const user = await axios.post(process.env.VUE_APP_BASE_API+`/api/users/${id}/update`, {
           name,
           image_name, 
           profile,
