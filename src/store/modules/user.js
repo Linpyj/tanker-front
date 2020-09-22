@@ -1,5 +1,7 @@
 import axios from 'axios'
 axios.defaults.withCredentials = true
+axios.defaults.headers['SameSite'] = 'none'
+axios.defaults.headers['Secure']
 
 export default {
 
