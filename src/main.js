@@ -29,6 +29,9 @@ Vue.use(VueMq, {
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('v-select', vSelect)
 
+axios.defaults.headers.common['SameSite'] = none;
+axios.defaults.headers.common['Secure'] = true;
+
 new Vue({
   render: h => h(App),
   store,
