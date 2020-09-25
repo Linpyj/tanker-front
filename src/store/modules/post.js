@@ -42,12 +42,12 @@ actions: {
   },
 
 
-  async createLikes({commit}) {
+  async createLikes({commit}, {id}) {
 	const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/#{id}/like`)
 	commit('setLikesCount', res.data.likes_count)
     commit('setLikesStatus', res.data.like_status)
   },
-  async deleteLikes({commit}) {
+  async deleteLikes({commit}, {id}) {
 	const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/#{id}/unlike`)
     commit('setLikesCount', res.data.likes_count)
     commit('setLikesStatus', res.data.like_status)
