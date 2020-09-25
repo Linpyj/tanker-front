@@ -5,9 +5,7 @@
     >
       ユーザーページ
     </prof-card>
-    <div class="ml-10">
-      {{ id }}
-    </div>
+
     <post-content
       v-for="post in posts"
       :key="post.id"

@@ -26,15 +26,6 @@
 
         <v-card-text>
           {{ udata.profile }}
-          <br>
-          <br>
-          {{ udata }}
-          <br>
-          <br>
-          {{ currentUser }}
-          <br>
-          <br>
-          {{ udata.image_name.url }}
         </v-card-text>
 
         <v-card-actions>
@@ -176,10 +167,6 @@
               class="ml-2 mt-5"
             ><slot>マイページ</slot></h2>
           </div>
-          <v-spacer />
-          {{ udata }}
-          <br>
-          {{ currentUser }}
           <div
             v-if="udata.id!=currentUser.id"
           >
