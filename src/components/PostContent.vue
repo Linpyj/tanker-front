@@ -133,12 +133,9 @@
             >
               <v-icon style="opacity:0.6">mdi-heart</v-icon>
             </v-btn>
-            <v-btn icon>
+            <!-- <v-btn icon>
               <v-icon style="opacity:0.6">mdi-message-text</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon style="opacity:0.6">mdi-message-text</v-icon>
-            </v-btn>
+            </v-btn> -->
             <v-spacer />
             <v-btn
               text
@@ -190,7 +187,6 @@
                 class="ml-3"
               >
                 {{ item.content }}
-                <!-- {{ item.user_id }} -->
               </div>
               <div>
                 <v-chip
@@ -288,9 +284,9 @@
             >
               <v-icon style="opacity:0.6">mdi-heart</v-icon>
             </v-btn>
-            <v-btn icon>
+            <!-- <v-btn icon>
               <v-icon style="opacity:0.6">mdi-message-text</v-icon>
-            </v-btn>
+            </v-btn> -->
             <v-spacer />
             <v-btn
               text
