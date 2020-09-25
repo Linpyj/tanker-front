@@ -21,8 +21,8 @@ mutations: {
 	},
 	setLikesCount(state, payload) {
 		state.likesCount = payload
-  },
-  setLikesStatus(state, payload) {
+	},
+	setLikesStatus(state, payload) {
 		state.likeStatus = payload
 	},
 },
@@ -42,15 +42,15 @@ actions: {
   },
 
 
-  // async createLikes({commit}, {id}) {
-  //   const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/#{id}/like`)
-  //   // commit('setLikesCount', )
-  //   // commit('setLikesStatus', )
-  // },
-  // async deleteLikes({commit}, {id}) {
-  //   const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/#{id}/unlike`)
-  //   // commit('setLikesCount', )
-  //   // commit('setLikesStatus', )
-  // },
+  async createLikes({commit}) {
+	const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/#{id}/like`)
+	commit('setLikesCount', res.data.likes_count)
+    commit('setLikesStatus', res.data.like_status)
+  },
+  async deleteLikes({commit}) {
+	const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/#{id}/unlike`)
+    commit('setLikesCount', res.data.likes_count)
+    commit('setLikesStatus', res.data.like_status)
+  }
 	}
 }

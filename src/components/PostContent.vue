@@ -318,9 +318,7 @@ export default {
     },
     async destroyPost() {
       var id = this.item.id
-      console.log(id)
       var user_id = this.item.user_id
-      // ここまでok
       await axios.post(`http://localhost:3000/posts/${id}/destroy`)
       await this.$store.dispatch('fetchOthersPosts')
       await this.$store.dispatch('fetchMyPosts', {id: user_id})
@@ -332,14 +330,14 @@ export default {
       axios.post(`http://localhost:3000/users/${id}/remove`)
       await this.$store.dispatch('fetchOthersPosts')
     },
-    // async createLike() {
-    //   var id = this.item.id
-    //   await this.$store.dispatch('createLikes', {id})
-    // },
-    // async removeLike() {
-    //   var id = this.item.id
-    //   await this.$store.dispatch('deleteLikes', {id})
-    // },
+    async createLike() {
+      var id = this.item.id
+      await this.$store.dispatch('createLikes', {id})
+    },
+    async removeLike() {
+      var id = this.item.id
+      await this.$store.dispatch('deleteLikes', {id})
+    },
   },
   computed: {
     currentUser() {
