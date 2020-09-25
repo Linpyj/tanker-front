@@ -39,7 +39,6 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              {{ $mq }}
               <v-spacer />
               <v-btn
                 style="margin-top: 4px;"
@@ -93,7 +92,6 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              {{ $mq }}
               <v-spacer />
               <v-btn
                 style="margin-top: 4px;"
