@@ -284,6 +284,7 @@
             >
               <v-icon style="opacity:0.6">mdi-heart</v-icon>
             </v-btn>
+            {{ item.likes_count }}
             <!-- <v-btn icon>
               <v-icon style="opacity:0.6">mdi-message-text</v-icon>
             </v-btn> -->
@@ -344,7 +345,7 @@ export default {
       return this.$store.state.user.current
     },
     isLike() {
-      return this.$store.state.post.likeStatus
+      return !!(this.$store.state.post.likeUsers.indexOf(this.$store.state.user.current.id) >= 0)
     }
   }
   // computed: {
