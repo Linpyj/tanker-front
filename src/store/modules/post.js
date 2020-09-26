@@ -44,6 +44,7 @@ actions: {
 
   async createLikes({commit}, {id}) {
 	const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/${id}/like`)
+	console.log(res)
 	commit('setLikesCount', res.data.likes_count)
     commit('setLikesStatus', res.data.like_status)
   },
