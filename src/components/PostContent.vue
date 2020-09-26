@@ -116,7 +116,7 @@
           <v-card-actions
             class="pt-0">
             <v-btn 
-              v-if="!!isLike"
+              v-if="!!item.like_status"
               @click.native="removeLike"
               text 
               icon 
@@ -267,7 +267,7 @@
           <v-card-actions
             class="pt-0">
             <v-btn 
-              v-if="!!isLike"
+              v-if="!!item.like_status"
               @click.native="removeLike"
               text 
               icon 
@@ -334,19 +334,21 @@ export default {
     async createLike() {
       var id = this.item.id
       await this.$store.dispatch('createLikes', {id})
+      await this.$store.dispatch('fetchOthersPosts')
     },
     async removeLike() {
       var id = this.item.id
       await this.$store.dispatch('deleteLikes', {id})
+      await this.$store.dispatch('fetchOthersPosts')
     },
   },
   computed: {
     currentUser() {
       return this.$store.state.user.current
-    },
-    isLike() {
-      return !!(this.$store.state.post.likeUsers.indexOf(this.$store.state.user.current.id) >= 0)
     }
+    // isLike() {
+    //   return !!(this.$store.state.post.likeUsers.indexOf(this.$store.state.user.current.id) >= 0)
+    // }
   }
   // computed: {
   //   posts() {

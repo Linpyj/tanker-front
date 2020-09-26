@@ -7,8 +7,7 @@ state: {
 	posts: [],
 	followeePosts: [],
   likesCount: null,
-  likeStatus: false,
-  likeUsers: []
+  likeStatus: false
 },
 mutations: {
 	setContent(state, payload) {
@@ -25,9 +24,6 @@ mutations: {
 	},
 	setLikesStatus(state, payload) {
 		state.likeStatus = payload
-	},
-	setLikeUsers(state, payload) {
-		state.likeUsers = payload
 	}
 },
 actions: {
@@ -48,13 +44,15 @@ actions: {
 
   async createLikes({commit}, {id}) {
 	const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/${id}/like`)
+	console.log('creating!!!!')
 	console.log(res)
 	commit('setLikesCount', res.data.likes_count)
 	commit('setLikesStatus', res.data.like_status)
-	commit('setLikeUsers', res.data.posts.like_users)
   },
   async deleteLikes({commit}, {id}) {
 	const res = await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/${id}/unlike`)
+	console.log('deleting!!!!')
+	console.log(res)
     commit('setLikesCount', res.data.likes_count)
     commit('setLikesStatus', res.data.like_status)
   }
