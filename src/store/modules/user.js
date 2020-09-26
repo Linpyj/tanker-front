@@ -7,7 +7,6 @@ export default {
 
 state: {
 		current: null,
-		token: null,
     thisUser: null,
     thisUserPosts: [],
     thisUserFollowerCount: null,
@@ -16,9 +15,6 @@ state: {
 mutations: {
     setCurrent(state, payload) {
         state.current = payload
-		},
-		setToken(state, payload) {
-			state.token = payload
 		},
 		// setNewUser(state, payload) {
 		// 	state.newUser = payload
@@ -40,7 +36,6 @@ actions: {
     
     async signin({commit}, {uid, password}) {
       sessionStorage.clear()
-      // const user = await axios.post('https://guarded-wildwood-22546.herokuapp.com/api/login', {
       const user = await axios.post(process.env.VUE_APP_BASE_API+'/api/login', {
 				uid, 
 				password
@@ -48,14 +43,6 @@ actions: {
       )
       sessionStorage.setItem('current', user.data.user)
       commit('setCurrent', user.data.user)
-      commit('setToken', user.data.user.token)
-        // if (sessionStorage.getItem('tanker')) {
-        // 	const strageData = JSON.parse(sessionStorage.getItem('tanker'))
-        // 	if (strageData.user.token) {
-        // 		axios.defaults.headers.common['Authorization'] = 'Bearer ' + strageData.user.token;
-        // 	}
-        // }
-
 },
 		signout({commit}) {
       sessionStorage.clear()

@@ -89,6 +89,16 @@
                 >
                   ログイン
                 </v-btn>
+                <v-alert
+                  :value="alert"
+                  color="pink"
+                  dark
+                  border="top"
+                  icon="mdi-home"
+                  transition="scale-transition"
+                >
+                  ログインに失敗しました。
+                </v-alert>
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -116,7 +126,8 @@ export default {
       return {
         name: '',
         uid: '',
-        password: ''
+        password: '',
+        alert: false
       }
     },
     methods: {
@@ -133,6 +144,8 @@ export default {
         console.log(currentUser)
         if (!currentUser) {
           this.$router.push('/')
+          console.log('booooooooo!')
+          this.alert
         } else {
           this.$router.push('/timeline')
         }
