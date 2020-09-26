@@ -36,6 +36,16 @@
                 >
                   ログイン
                 </v-btn>
+                <v-alert
+                  :value="alert"
+                  border="left"
+                  colored-border
+                  type="error"
+                  elevation="2"
+                  transition="scale-transition"
+                >
+                  ログインに失敗しました。
+                </v-alert>
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -91,10 +101,10 @@
                 </v-btn>
                 <v-alert
                   :value="alert"
-                  color="pink"
-                  dark
-                  border="top"
-                  icon="mdi-home"
+                  border="left"
+                  colored-border
+                  type="error"
+                  elevation="2"
                   transition="scale-transition"
                 >
                   ログインに失敗しました。
@@ -140,12 +150,13 @@ export default {
           }
         )
         const currentUser = this.$store.state.user.current
-        console.log('currentUser: ')
         console.log(currentUser)
+        console.log(typeof currentUser.followee_count)
         if (!currentUser) {
-          this.$router.push('/')
-          console.log('booooooooo!')
-          this.alert
+          this.alert = true
+        } else if (currentUser.followee_count == 0) {
+          this.$router.push('/recommend')
+          console.log(currentUser)
         } else {
           this.$router.push('/timeline')
         }

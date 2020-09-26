@@ -10,7 +10,8 @@ state: {
     thisUser: null,
     thisUserPosts: [],
     thisUserFollowerCount: null,
-    thisUserFollowCount: null
+    thisUserFollowCount: null,
+    recommendUsers: []
 },
 mutations: {
     setCurrent(state, payload) {
@@ -30,6 +31,9 @@ mutations: {
     },
     setThisUserFollowCount(state, payload) {
       state.thisUserFollowCount = payload
+    },
+    setRecommendUsers(state, payload) {
+			state.recommendUsers = payload
     },
 },
 actions: {
@@ -92,6 +96,12 @@ actions: {
         })
         console.log(user)
         // commit('setCurrentUser', )
-      }
-}
+      },
+    async fetchRecommend({commit}) {
+      const users = await axios.get(process.env.VUE_APP_BASE_API+'/api/users/recommend')
+      console.log(users.data.users)
+      commit('setRecommendUsers', users.data.users)
+    }
+},
+    
 }

@@ -50,6 +50,16 @@
               >
                 この情報で登録
               </v-btn>
+              <v-alert
+                  :value="alert"
+                  border="left"
+                  colored-border
+                  type="error"
+                  elevation="2"
+                  transition="scale-transition"
+                >
+                  登録に失敗しました。
+                </v-alert>
             </v-form>
           </v-card-text>
           <v-card-actions>
@@ -118,6 +128,16 @@
               >
                 この情報で登録
               </v-btn>
+              <v-alert
+                  :value="alert"
+                  border="left"
+                  colored-border
+                  type="error"
+                  elevation="2"
+                  transition="scale-transition"
+                >
+                  登録に失敗しました。
+                </v-alert>
             </v-form>
           </v-card-text>
           <v-card-actions>
@@ -144,7 +164,8 @@ export default {
         uid: '',
         name: '',
         password: '',
-        password2: ''
+        password2: '',
+        alert: false
     }
     },
     methods: {
@@ -158,9 +179,10 @@ export default {
         const currentUser = this.$store.state.user.current
         if (!currentUser) {
           this.$router.push('/')
+          this.alert = true
         } else {
-          this.$router.push('/timeline')
-        }
+          this.$router.push('/recommend')
+        } 
       }
     }
   }
