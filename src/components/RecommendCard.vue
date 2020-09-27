@@ -39,9 +39,10 @@
             {{ user.follower_count }} フォロワー
           </v-btn>
           <v-spacer />
+          {{ user.follow_status }}
           <div>
             <v-btn
-              v-if="!!isFollowing"
+              v-if="!!user.follow_status"
               color="black"
               text
               @click.native="removeFollow"
@@ -71,8 +72,9 @@
     <v-row v-if="$mq==='sp'">
       <v-col cols="12">
         <div class="flex">
+          {{ user.follow_status }}
           <v-btn
-              v-if="!!isFollowing"
+              v-if="!!user.follow_status"
               color="black"
               text
               @click.native="removeFollow"
@@ -145,21 +147,23 @@ export default {
       //id取得できてる
       console.log(id)
       this.$store.dispatch('createFollow', {id})
+      this.$store.dispatch('fetchRecommend')
     },
     removeFollow() {
       var id = this.user.id
       //id取得できてる
       console.log(id)
       this.$store.dispatch('removeFollow', {id})
+      this.$store.dispatch('fetchRecommend')
     }
   },
   computed: {
+    currentUser() {
+      return this.$store.state.user.current
+    },
     isFollowing() {
       return this.$store.state.follow.status
     },
-    currentUser() {
-      return this.$store.state.user.current
-    }
   }
 	
 }
