@@ -177,7 +177,6 @@ export default {
         this.$store.dispatch('signup', {uid,name,password,password_confirmation})
         const currentUser = this.$store.state.user.current
         if (!currentUser) {
-          this.$router.push('/')
           this.alert = true
         } else {
           this.$router.push('/recommend')

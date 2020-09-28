@@ -39,7 +39,6 @@
             {{ user.follower_count }} フォロワー
           </v-btn>
           <v-spacer />
-          {{ user.follow_status }}
           <div>
             <v-btn
               v-if="!!user.follow_status"
@@ -72,7 +71,6 @@
     <v-row v-if="$mq==='sp'">
       <v-col cols="12">
         <div class="flex">
-          {{ user.follow_status }}
           <v-btn
               v-if="!!user.follow_status"
               color="black"

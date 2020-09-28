@@ -224,6 +224,8 @@
                         v-model="image_name"
                         label="プロフィール画像"
                       ></v-text-field>
+                      <input @change="selectedFile" type="file" name="file">
+                      <button @click="upload" type="submit">アップロード</button>
                       <v-text-field
                         v-model="profile"
                         label="自己紹介文"
@@ -338,7 +340,7 @@ export default {
         follower: '5 billion'        
       },
       dialog: '',
-
+      uploadFile: null,
       name: '',
       image_name: '',
       profile: '',
@@ -371,6 +373,30 @@ export default {
       var id = this.$route.params['id']
       this.$store.dispatch('removeFollow', {id})
     },
+    selectedFile: function(e) {
+                // 選択された File の情報を保存しておく
+                e.preventDefault();
+                let files = e.target.files;
+                this.uploadFile = files[0];
+            },
+            upload: function() {
+                // FormData を利用して File を POST する
+                let formData = new FormData();
+                formData.append('yourFileKey', this.uploadFile);
+                let config = {
+                    headers: {
+                        'content-type': 'multipart/form-data'
+                    }
+                };
+                axios
+                    .post('yourUploadUrl', formData, config)
+                    .then(function(response) {
+                        // response 処理
+                    })
+                    .catch(function(error) {
+                        // error 処理
+                    })
+            },
     updateUser() {
       var name = this.name
       var image_name = this.image_name
