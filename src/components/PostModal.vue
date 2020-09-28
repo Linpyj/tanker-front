@@ -7,12 +7,7 @@
 					outlined
 				>
 					<v-card-text>
-						<!-- <v-text-field
-							v-model="content"
-							:rules="[required, limit_length]"
-							counter="15"
-						>
-						</v-text-field> -->
+						
             <v-textarea
               v-model="content"
               :rules="[limit_length]"

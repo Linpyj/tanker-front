@@ -175,7 +175,6 @@ export default {
         var password = this.password
         var password_confirmation = this.password2
         this.$store.dispatch('signup', {uid,name,password,password_confirmation})
-        console.log(name + password);
         const currentUser = this.$store.state.user.current
         if (!currentUser) {
           this.$router.push('/')

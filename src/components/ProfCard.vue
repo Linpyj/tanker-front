@@ -369,8 +369,6 @@ export default {
     },
     removeFollow() {
       var id = this.$route.params['id']
-      console.log(id)
-      // console.log(this.$route.params['id'])
       this.$store.dispatch('removeFollow', {id})
     },
     updateUser() {

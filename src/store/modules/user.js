@@ -62,16 +62,11 @@ actions: {
 				password_confirmation: password_confirmation
       })
       sessionStorage.setItem('current', user.data.user)
-      console.log(user.data.user)
 			commit('setCurrent', user.data.user)
     },
 
     async fetchUser({commit}, {id}) {
       const user = await axios.get(process.env.VUE_APP_BASE_API+`/api/users/${id}`)
-      console.log('user.data in user.js')
-      console.log(user.data)
-      console.log(user.data.follow_status)
-      console.log(id)
       commit('setThisUser', user.data.user)
       commit('setThisUserPosts', user.data.posts)
       commit('setStatus', user.data.follow_status, {root: true})
@@ -79,7 +74,7 @@ actions: {
       commit('setThisUserFollowCount', user.data.follow_count)
     },
 
-    async updateUser({state}, {name, 
+    async updateUser({state, commit}, {name, 
       image_name, 
       profile,
       old_password,
@@ -94,12 +89,10 @@ actions: {
           new_password,
           new_password_confirmation
         })
-        console.log(user)
-        // commit('setCurrentUser', )
+        commit('setCurrentUser', user.data.user)
       },
     async fetchRecommend({commit}) {
       const users = await axios.get(process.env.VUE_APP_BASE_API+'/api/users/recommend')
-      console.log(users.data.users)
       commit('setRecommendUsers', users.data.users)
     }
 },

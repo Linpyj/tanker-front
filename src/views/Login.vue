@@ -150,13 +150,10 @@ export default {
           }
         )
         const currentUser = this.$store.state.user.current
-        console.log(currentUser)
-        console.log(typeof currentUser.followee_count)
         if (!currentUser) {
           this.alert = true
         } else if (currentUser.followee_count == 0) {
           this.$router.push('/recommend')
-          console.log(currentUser)
         } else {
           this.$router.push('/timeline')
         }

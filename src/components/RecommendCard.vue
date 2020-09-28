@@ -145,14 +145,13 @@ export default {
     createFollow() {
       var id = this.user.id
       //id取得できてる
-      console.log(id)
       this.$store.dispatch('createFollow', {id})
+      this.$set(this.user, 'follow_status', true) 
       this.$store.dispatch('fetchRecommend')
     },
     removeFollow() {
       var id = this.user.id
       //id取得できてる
-      console.log(id)
       this.$store.dispatch('removeFollow', {id})
       this.$store.dispatch('fetchRecommend')
     }
@@ -164,6 +163,9 @@ export default {
     isFollowing() {
       return this.$store.state.follow.status
     },
+    followerCount() {
+      return this.$store.state.user.thisUserFollowerCount
+    }
   }
 	
 }
