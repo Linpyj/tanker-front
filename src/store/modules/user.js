@@ -81,6 +81,11 @@ actions: {
       new_password,
       new_password_confirmation}) {
         var id = state.current.id
+      //   const config = {
+      //     headers: {
+      //         "content-type": "multipart/form-data",
+      //     }
+      // };
         const user = await axios.post(process.env.VUE_APP_BASE_API+`/api/users/${id}/update`, {
           name,
           image_name, 
@@ -89,7 +94,8 @@ actions: {
           new_password,
           new_password_confirmation
         })
-        commit('setCurrentUser', user.data.user)
+        console.log(user)
+        commit('setCurrent', user.data.user)
       },
     async fetchRecommend({commit}) {
       const users = await axios.get(process.env.VUE_APP_BASE_API+'/api/users/recommend')

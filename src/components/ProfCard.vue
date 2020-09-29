@@ -93,10 +93,22 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
-                      <v-text-field
-                        v-model="image_name"
-                        label="プロフィール画像"
-                      ></v-text-field>
+                      <label v-show="!uploadedImage" class="input-item__label"
+                        >画像を選択
+                        <input type="file" @change="onFileChange" />
+                      </label>
+                      <div class="preview-item">
+                        <img
+                          v-show="uploadedImage"
+                          class="preview-item-file"
+                          :src="uploadedImage"
+                          alt=""
+                        />
+                        <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
+                          <p class="preview-item-name">{{ img_name }}</p>
+                          <p class="preview-item-icon">X</p>
+                        </div>
+                      </div>
                       <v-text-field
                         v-model="profile"
                         label="自己紹介文"
@@ -220,12 +232,22 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
-                      <v-text-field
-                        v-model="image_name"
-                        label="プロフィール画像"
-                      ></v-text-field>
-                      <input @change="selectedFile" type="file" name="file">
-                      <button @click="upload" type="submit">アップロード</button>
+                      <label v-show="!uploadedImage" class="input-item__label"
+                        >画像を選択
+                        <input type="file" @change="onFileChange" />
+                      </label>
+                      <div class="preview-item">
+                        <img
+                          v-show="uploadedImage"
+                          class="preview-item-file"
+                          :src="uploadedImage"
+                          alt=""
+                        />
+                        <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
+                          <p class="preview-item-name">{{ img_name }}</p>
+                          <p class="preview-item-icon">X</p>
+                        </div>
+                      </div>
                       <v-text-field
                         v-model="profile"
                         label="自己紹介文"
@@ -255,7 +277,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
-                      v-if="this.name||this.image_name||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation)"
+                      v-if="this.name||this.uploadedImage||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation)"
                       class="mr-4"
                       text
                       color="blue"
@@ -340,7 +362,8 @@ export default {
         follower: '5 billion'        
       },
       dialog: '',
-      uploadFile: null,
+      uploadedImage: '',
+      img_name: '',
       name: '',
       image_name: '',
       profile: '',
@@ -373,38 +396,36 @@ export default {
       var id = this.$route.params['id']
       this.$store.dispatch('removeFollow', {id})
     },
-    selectedFile: function(e) {
-                // 選択された File の情報を保存しておく
-                e.preventDefault();
-                let files = e.target.files;
-                this.uploadFile = files[0];
-            },
-            upload: function() {
-                // FormData を利用して File を POST する
-                let formData = new FormData();
-                formData.append('yourFileKey', this.uploadFile);
-                let config = {
-                    headers: {
-                        'content-type': 'multipart/form-data'
-                    }
-                };
-                axios
-                    .post('yourUploadUrl', formData, config)
-                    .then(function(response) {
-                        // response 処理
-                    })
-                    .catch(function(error) {
-                        // error 処理
-                    })
-            },
+    onFileChange(e) {
+      const files = e.target.files || e.dataTransfer.files
+      this.createImage(files[0])
+      this.img_name = files[0].name
+    },
+    // アップロードした画像を表示
+    createImage(file) {
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.uploadedImage = e.target.result
+      }
+      reader.readAsDataURL(file)
+    },
+    remove() {
+      this.uploadedImage = false
+    },
     updateUser() {
+      let image_name = new FormData();
+      image_name.append('this[uploadedImage]', this.uploadedImage)
       var name = this.name
-      var image_name = this.image_name
+      // var uploadedImage = this.uploadedImage
       var profile = this.profile
       var old_password = this.old_password
       var password = this.new_password
       var password_confirmation = this.new_password_confirmation
       if (!password) {
+        console.log('sending!!!!!!!!!')
+        console.log('sending!!!!!!!!!')
+        console.log('sending!!!!!!!!!')
+        // ここまではできてる
         this.$store.dispatch('updateUser', {
           name,
           image_name,
@@ -424,3 +445,25 @@ export default {
   }
 }
 </script>
+
+<style>
+label > input {
+  display: none;
+}
+
+.preview-item-file {
+  max-height: 300px;
+  max-width: 300px;
+}
+
+
+.input-item__label {
+  padding: 0 1rem;
+  border: solid 1px #888;  
+  content: '+';
+  font-size: 1rem;
+  color: #888;
+  padding-left: 1rem;
+}
+
+</style>
