@@ -232,21 +232,16 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
-                      <label v-show="!uploadedImage" class="input-item__label"
-                        >画像を選択
-                        <input type="file" @change="onFileChange" />
-                      </label>
                       <div class="preview-item">
-                        <img
-                          v-show="uploadedImage"
-                          class="preview-item-file"
-                          :src="uploadedImage"
-                          alt=""
-                        />
-                        <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
-                          <p class="preview-item-name">{{ img_name }}</p>
-                          <p class="preview-item-icon">X</p>
-                        </div>
+                        <img :src="avatar" alt="Avatar" class="image">
+    <div>
+    <input
+           type="file"
+           id="avatar_name"
+           accept="image/jpeg, image/png"
+           @change="onImageChange"
+           />
+    </div>
                       </div>
                       <v-text-field
                         v-model="profile"
@@ -277,7 +272,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
-                      v-if="this.name||this.uploadedImage||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation)"
+                      v-if="this.name||this.avatar||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation)"
                       class="mr-4"
                       text
                       color="blue"
@@ -366,6 +361,7 @@ export default {
       img_name: '',
       name: '',
       image_name: '',
+      avatar: '',
       profile: '',
       old_password: '',
       new_password: '',
@@ -396,25 +392,26 @@ export default {
       var id = this.$route.params['id']
       this.$store.dispatch('removeFollow', {id})
     },
-    onFileChange(e) {
-      const files = e.target.files || e.dataTransfer.files
-      this.createImage(files[0])
-      this.img_name = files[0].name
+    getBase64 (file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = error => reject(error)
+      })
     },
-    // アップロードした画像を表示
-    createImage(file) {
-      const reader = new FileReader()
-      reader.onload = e => {
-        this.uploadedImage = e.target.result
-      }
-      reader.readAsDataURL(file)
-    },
-    remove() {
-      this.uploadedImage = false
+    onImageChange (e) {
+      const images = e.target.files || e.dataTransfer.files
+      this.getBase64(images[0])
+        .then(image => this.avatar = image)
+        .catch(error => this.setError(error, '画像のアップロードに失敗しました。'))
     },
     updateUser() {
-      let image_name = new FormData();
-      image_name.append('this[uploadedImage]', this.uploadedImage)
+      // let picture = new FormData();
+      // picture.append('image', this.uploadedImage)
+      // const image_name = this.getBase64(picture)
+      const image_name = this.avatar
+
       var name = this.name
       // var uploadedImage = this.uploadedImage
       var profile = this.profile
