@@ -232,16 +232,23 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
+                      <input @change="selectedFile" type="file" name="file">
+                      <button @click="upload" type="submit">アップロード</button>
+
+
+
+
                       <div class="preview-item">
                         <img :src="avatar" alt="Avatar" class="image">
-    <div>
-    <input
-           type="file"
-           id="avatar_name"
-           accept="image/jpeg, image/png"
-           @change="onImageChange"
-           />
-    </div>
+              <div>
+              <input
+                    type="file"
+                    id="avatar_name"
+                    accept="image/jpeg, image/png"
+                    enctype='multipart/form-data'
+                    @change="onImageChange"
+                    />
+              </div>
                       </div>
                       <v-text-field
                         v-model="profile"
@@ -326,14 +333,29 @@
         <v-card-actions>
           <v-btn
             text
+            @click.native="fo=true; fetchPeople()"
           >
             {{ follow_count }} フォロー
           </v-btn>
           <v-btn
             text
+            @click.native="fo=true; fetchPeople()"
           >
             {{ follower_count }} フォロワー
           </v-btn>
+
+          <v-row justify="center">
+            <v-dialog v-model="fo" scrollable max-width="80%">
+              <v-card>
+                <v-card-title>{{ follower_index }}</v-card-title>
+                <v-divider></v-divider>
+                <v-card-text height="300px">{{ followee_index }}</v-card-text>
+              </v-card>
+            </v-dialog>
+          </v-row>
+
+          {{ this.$store.state.follow.follower_index }}
+          {{ followee_index }}
           
         </v-card-actions>
 
@@ -348,14 +370,6 @@ export default {
   props:['udata'],
 	data() {
 		return {
-			user: {
-        id: '5',
-				name: 'ケン吉田',
-				uid: 'kenyoshida',
-        intro: '私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。私は吉田腱と申します。短歌が好きで、毎日100首詠んで暮らしています。仲良く短歌を読んで遊びましょう。',
-        followee: '3',
-        follower: '5 billion'        
-      },
       dialog: '',
       uploadedImage: '',
       img_name: '',
@@ -366,7 +380,9 @@ export default {
       old_password: '',
       new_password: '',
       new_password_confirmation: '',
-      v0: false
+      v0: false,
+      fo: false,
+      uploadFile: null
 		}
   },
   computed: {
@@ -381,6 +397,12 @@ export default {
     },
     follow_count() {
       return this.$store.state.user.thisUserFollowCount
+    },
+    follower_index() {
+      return this.$store.state.follow.followerIndex
+    },
+    followee_index() {
+      return this.$store.state.follow.followeeIndex
     }
   },
   methods: {
@@ -406,11 +428,41 @@ export default {
         .then(image => this.avatar = image)
         .catch(error => this.setError(error, '画像のアップロードに失敗しました。'))
     },
-    updateUser() {
-      // let picture = new FormData();
-      // picture.append('image', this.uploadedImage)
-      // const image_name = this.getBase64(picture)
-      const image_name = this.avatar
+
+
+      selectedFile: function(e) {
+                // 選択された File の情報を保存しておく
+                e.preventDefault();
+                let files = e.target.files;
+                this.uploadFile = files[0];
+            },
+            upload: function() {
+                // FormData を利用して File を POST する
+                let image_name = new FormData();
+                image_name.append('yourFileKey', this.uploadFile);
+                this.$store.dispatch('updateUser', {image_name})
+
+            },
+
+
+
+    async updateUser() {
+      // const image_name = await new FormData()
+      // console.log('avatarrrrrrrrr')
+      // console.log(typeof this.avatar) // string
+      // image_name.append('image', this.avatar)
+      // console.log(typeof image_name)  // object
+      // // let picture = new FormData();
+      // // picture.append('image', this.uploadedImage)
+      // // const image_name = this.getBase64(picture)
+      // // const image_name = this.avatar
+
+
+
+      const image_name = await new FormData()
+      image_name.append('image_name', this.avatar)
+      image_name.append('hisName', 'Michael')
+      console.log(...image_name.entries())
 
       var name = this.name
       // var uploadedImage = this.uploadedImage
@@ -438,7 +490,13 @@ export default {
           password_confirmation
         })
       }
-    }
+    },
+    fetchPeople() {
+      var id = this.udata.id
+      this.$store.dispatch('followerIndex', {id})
+      this.$store.dispatch('followeeIndex', {id})
+    },
+
   }
 }
 </script>

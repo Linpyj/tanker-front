@@ -81,19 +81,25 @@ actions: {
       new_password,
       new_password_confirmation}) {
         var id = state.current.id
-      //   const config = {
-      //     headers: {
-      //         "content-type": "multipart/form-data",
-      //     }
-      // };
+        // var config = {
+        //   headers: {
+        //     'content-type': 'multipart/form-data'
+        //   }
+        // }
         const user = await axios.post(process.env.VUE_APP_BASE_API+`/api/users/${id}/update`, {
-          name,
-          image_name, 
-          profile,
-          old_password,
-          new_password,
-          new_password_confirmation
-        })
+          user: {
+              name,
+              image_name, 
+              profile,
+              old_password,
+              new_password,
+              new_password_confirmation
+                }}, 
+          {headers: {
+            // ファイルを送れるようmultipart/form-datを指定する
+                'Content-Type': 'multipart/form-data'
+            }}
+        )
         console.log(user)
         commit('setCurrent', user.data.user)
       },
