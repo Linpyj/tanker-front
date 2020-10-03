@@ -94,11 +94,7 @@ actions: {
               old_password,
               new_password,
               new_password_confirmation
-                }}, 
-          {headers: {
-            // ファイルを送れるようmultipart/form-datを指定する
-                'Content-Type': 'multipart/form-data'
-            }}
+                }}
         )
         console.log(user)
         commit('setCurrent', user.data.user)
