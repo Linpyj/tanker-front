@@ -93,20 +93,16 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
-                      <label v-show="!uploadedImage" class="input-item__label"
-                        >画像を選択
-                        <input type="file" @change="onFileChange" />
-                      </label>
                       <div class="preview-item">
-                        <img
-                          v-show="uploadedImage"
-                          class="preview-item-file"
-                          :src="uploadedImage"
-                          alt=""
-                        />
-                        <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
-                          <p class="preview-item-name">{{ img_name }}</p>
-                          <p class="preview-item-icon">X</p>
+                        <img :src="avatar" alt="Avatar" class="image">
+                        <div>
+                        <input
+                          type="file"
+                          id="avatar_name"
+                          accept="image/jpeg, image/png"
+                          enctype='multipart/form-data'
+                          @change="onImageChange"
+                          />
                         </div>
                       </div>
                       <v-text-field
@@ -232,23 +228,19 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
-                      <!-- <input @change="selectedFile" type="file" name="file">
-                      <button @click="upload" type="submit">アップロード</button> -->
-
-
 
 
                       <div class="preview-item">
                         <img :src="avatar" alt="Avatar" class="image">
-              <div>
-              <input
-                    type="file"
-                    id="avatar_name"
-                    accept="image/jpeg, image/png"
-                    enctype='multipart/form-data'
-                    @change="onImageChange"
-                    />
-              </div>
+                        <div>
+                        <input
+                              type="file"
+                              id="avatar_name"
+                              accept="image/jpeg, image/png"
+                              enctype='multipart/form-data'
+                              @change="onImageChange"
+                              />
+                        </div>
                       </div>
                       <v-text-field
                         v-model="profile"
@@ -327,7 +319,6 @@
         <v-card-text>
           {{ udata.profile }}
 
-          <!-- {{ udata }} -->
         </v-card-text>
 
         <v-card-actions>
@@ -429,51 +420,14 @@ export default {
         .catch(error => this.setError(error, '画像のアップロードに失敗しました。'))
     },
 
-
-      // selectedFile: function(e) {
-      //           // 選択された File の情報を保存しておく
-      //           e.preventDefault();
-      //           let files = e.target.files;
-      //           this.uploadFile = files[0];
-      //       },
-      //       upload: function() {
-      //           // FormData を利用して File を POST する
-      //           let image_name = new FormData();
-      //           image_name.append('yourFileKey', this.uploadFile);
-      //           this.$store.dispatch('updateUser', {image_name})
-
-      //       },
-
-
-
     async updateUser() {
-      // const image_name = await new FormData()
-      // console.log('avatarrrrrrrrr')
-      // console.log(typeof this.avatar) // string
-      // image_name.append('image', this.avatar)
-      // console.log(typeof image_name)  // object
-      // // let picture = new FormData();
-      // // picture.append('image', this.uploadedImage)
-      // // const image_name = this.getBase64(picture)
-      // // const image_name = this.avatar
-
-
-
-      // const image_name = await new FormData()
-      // image_name.append('image_name', this.avatar)
-
       var name = this.name
-      // var uploadedImage = this.uploadedImage
       var image_name = this.avatar
       var profile = this.profile
       var old_password = this.old_password
       var password = this.new_password
       var password_confirmation = this.new_password_confirmation
       if (!password) {
-        console.log('sending!!!!!!!!!')
-        console.log('sending!!!!!!!!!')
-        console.log('sending!!!!!!!!!')
-        // ここまではできてる
         this.$store.dispatch('updateUser', {
           name,
           image_name,
