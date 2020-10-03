@@ -232,8 +232,8 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
-                      <input @change="selectedFile" type="file" name="file">
-                      <button @click="upload" type="submit">アップロード</button>
+                      <!-- <input @change="selectedFile" type="file" name="file">
+                      <button @click="upload" type="submit">アップロード</button> -->
 
 
 
@@ -430,19 +430,19 @@ export default {
     },
 
 
-      selectedFile: function(e) {
-                // 選択された File の情報を保存しておく
-                e.preventDefault();
-                let files = e.target.files;
-                this.uploadFile = files[0];
-            },
-            upload: function() {
-                // FormData を利用して File を POST する
-                let image_name = new FormData();
-                image_name.append('yourFileKey', this.uploadFile);
-                this.$store.dispatch('updateUser', {image_name})
+      // selectedFile: function(e) {
+      //           // 選択された File の情報を保存しておく
+      //           e.preventDefault();
+      //           let files = e.target.files;
+      //           this.uploadFile = files[0];
+      //       },
+      //       upload: function() {
+      //           // FormData を利用して File を POST する
+      //           let image_name = new FormData();
+      //           image_name.append('yourFileKey', this.uploadFile);
+      //           this.$store.dispatch('updateUser', {image_name})
 
-            },
+      //       },
 
 
 
@@ -459,11 +459,12 @@ export default {
 
 
 
-      const image_name = await new FormData()
-      image_name.append('image_name', this.avatar)
+      // const image_name = await new FormData()
+      // image_name.append('image_name', this.avatar)
 
       var name = this.name
       // var uploadedImage = this.uploadedImage
+      var image_name = this.avatar
       var profile = this.profile
       var old_password = this.old_password
       var password = this.new_password
