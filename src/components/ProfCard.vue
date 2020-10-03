@@ -461,8 +461,6 @@ export default {
 
       const image_name = await new FormData()
       image_name.append('image_name', this.avatar)
-      image_name.append('hisName', 'Michael')
-      console.log(...image_name.entries())
 
       var name = this.name
       // var uploadedImage = this.uploadedImage
