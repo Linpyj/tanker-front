@@ -94,20 +94,16 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
-                      <label v-show="!uploadedImage" class="input-item__label"
-                        >画像を選択
-                        <input type="file" @change="onFileChange" />
-                      </label>
                       <div class="preview-item">
-                        <img
-                          v-show="uploadedImage"
-                          class="preview-item-file"
-                          :src="uploadedImage"
-                          alt=""
-                        />
-                        <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
-                          <p class="preview-item-name">{{ img_name }}</p>
-                          <p class="preview-item-icon">X</p>
+                        <img :src="avatar" alt="Avatar" class="image">
+                        <div>
+                        <input
+                          type="file"
+                          id="avatar_name"
+                          accept="image/jpeg, image/png"
+                          enctype='multipart/form-data'
+                          @change="onImageChange"
+                          />
                         </div>
                       </div>
                       <v-text-field
@@ -233,23 +229,19 @@
                         v-model="name"
                         label="ユーザー名"
                       ></v-text-field>
-                      <!-- <input @change="selectedFile" type="file" name="file">
-                      <button @click="upload" type="submit">アップロード</button> -->
-
-
 
 
                       <div class="preview-item">
                         <img :src="avatar" alt="Avatar" class="image">
-              <div>
-              <input
-                    type="file"
-                    id="avatar_name"
-                    accept="image/jpeg, image/png"
-                    enctype='multipart/form-data'
-                    @change="onImageChange"
-                    />
-              </div>
+                        <div>
+                        <input
+                              type="file"
+                              id="avatar_name"
+                              accept="image/jpeg, image/png"
+                              enctype='multipart/form-data'
+                              @change="onImageChange"
+                              />
+                        </div>
                       </div>
                       <v-text-field
                         v-model="profile"
@@ -494,7 +486,6 @@ export default {
         .then(image => this.avatar = image)
         .catch(error => this.setError(error, '画像のアップロードに失敗しました。'))
     },
-
 
     async updateUser() {
       var name = this.name
