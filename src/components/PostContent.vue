@@ -320,13 +320,13 @@ export default {
     async destroyPost() {
       var id = this.item.id
       var user_id = this.item.user_id
-      await axios.post(`http://localhost:3000/posts/${id}/destroy`)
+      await axios.post(process.env.VUE_APP_BASE_API+`/api/posts/${id}/destroy`)
       await this.$store.dispatch('fetchOthersPosts')
       await this.$store.dispatch('fetchMyPosts', {id: user_id})
     },
     async destroyFollow() {
       var id = this.item.id
-      axios.post(`http://localhost:3000/users/${id}/remove`)
+      axios.post(process.env.VUE_APP_BASE_API+`/api/users/${id}/remove`)
       await this.$store.dispatch('fetchOthersPosts')
     },
     async createLike() {

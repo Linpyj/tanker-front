@@ -32,14 +32,58 @@
         <v-card-actions>
           <v-btn
             text
+            @click.native="open1"
           >
             {{ follow_count }} フォロー
           </v-btn>
           <v-btn
             text
+            @click.native="open2"
           >
             {{ follower_count }} フォロワー
           </v-btn>
+
+          <v-row justify="center">
+            <v-dialog v-model="fo" scrollable max-width="80%" height="80%">
+              <v-card>
+                <v-tabs grow v-model="active_tab">
+                  <v-tab v-for="tab of tabs" :key="tab.id">
+                    {{tab.name}}
+                  </v-tab>
+                </v-tabs>
+
+                <v-tabs-items
+                  v-model="active_tab"
+                >
+                  <v-tab-item
+                  >
+                    <recommend-content
+                      v-for="user in followee_index"
+                      :key="user.id" 
+                      :user="user"
+                    />
+                  </v-tab-item>
+
+                  <v-tab-item
+                  >
+                    <recommend-content
+                      v-for="user in follower_index"
+                      :key="user.id" 
+                      :user="user"
+                    />
+                  </v-tab-item>
+
+                </v-tabs-items>
+              </v-card>
+            </v-dialog>
+          </v-row>
+        </v-card-actions>
+
+        </v-card>
+      </v-col>
+    </v-row>
+
+
           <v-spacer />
           <div
             v-if="udata.id!=currentUser.id"
@@ -157,12 +201,6 @@
               </v-dialog>
             </v-row>
           </div>
-        </v-card-actions>
-
-        </v-card>
-      </v-col>
-    </v-row>
-
 
 
 
