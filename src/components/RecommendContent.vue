@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-0 pt-0">
     <v-row justify="center" v-if="$mq==='pc'">
       <v-col cols="7">
         <v-card
@@ -138,6 +138,7 @@
 
 <script>
 export default {
+  name: 'RecommendContent',
   props: ['user'],
   methods: {
     createFollow() {

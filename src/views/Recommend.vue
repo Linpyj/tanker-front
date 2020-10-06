@@ -9,7 +9,7 @@
       完了する
       </v-btn>
     <title />
-    <recommend-card
+    <recommend-content
       v-for="user in recommendUsers"
       :key="user.id"
       :user="user"
@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import RecommendCard from '@/components/RecommendCard.vue'
+import RecommendContent from '@/components/RecommendContent.vue'
 import Title from '@/components/Title.vue'
 export default {
 	name: 'Recommend',
 	components: {
-    RecommendCard,
+    RecommendContent,
     Title
   },
   computed: {

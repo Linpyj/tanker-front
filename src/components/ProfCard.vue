@@ -338,58 +338,35 @@
           </v-btn>
 
           <v-row justify="center">
-            <v-dialog v-model="fo" scrollable max-width="80%">
+            <v-dialog v-model="fo" scrollable max-width="80%" height="80%">
               <v-card>
-                <!-- <v-tabs
-                  v-model="tab"
-                  centered
-                  class="mb-5"
-                >
-                  <v-tab>
-                    <v-btn
-                      text
-                    >
-                      フォロー
-                    </v-btn>
-                  </v-tab>
-                  <v-tab>
-                    <v-btn
-                      text
-                    >
-                      フォロワー
-                    </v-btn>
-                  </v-tab>
-                </v-tabs> -->
-
                 <v-tabs grow v-model="active_tab">
                   <v-tab v-for="tab of tabs" :key="tab.id">
                     {{tab.name}}
                   </v-tab>
                 </v-tabs>
 
-
                 <v-tabs-items
                   v-model="active_tab"
                 >
                   <v-tab-item
                   >
-                    <p>AAAAAAAAA</p>
-                    {{ followee_index }}
+                    <recommend-content
+                      v-for="user in followee_index"
+                      :key="user.id" 
+                      :user="user"
+                    />
                   </v-tab-item>
 
                   <v-tab-item
                   >
-                    <p>BBBBBBBBBBBBB</p>
-                    {{ follower_index }}
+                    <recommend-content
+                      v-for="user in follower_index"
+                      :key="user.id" 
+                      :user="user"
+                    />
                   </v-tab-item>
 
-                  <!-- <v-tab-item
-                  >
-                    <p>BBBBBBBBBBBBB</p>
-                    {{ follower_index }}
-                  </v-tab-item> -->
-
-                  
                 </v-tabs-items>
               </v-card>
             </v-dialog>
@@ -403,8 +380,13 @@
 </template>
 
 <script>
+import RecommendContent from '@/components/RecommendContent.vue'
 export default {
+  name: 'ProfCard',
   props:['udata'],
+  components: {
+    RecommendContent
+  },
 	data() {
 		return {
       dialog: '',
@@ -420,8 +402,6 @@ export default {
       v0: false,
       fo: false,
       uploadFile: null,
-      // tab: '',
-      isActive: '1',
       active_tab: 0,
       tabs: [
         { id: 1, name: 'フォロー' },
@@ -451,18 +431,12 @@ export default {
   },
   methods: {
     open1() {
-      console.log('open')
       this.fo = true
       this.active_tab = 0
-      console.log(this.tab)
     },
     open2() {
       this.fo = true
       this.active_tab = 1
-      console.log(this.tab)
-    },
-    selectTab(num) {
-      this.isActive = num
     },
     createFollow() {
       var id = this.$route.params['id']
