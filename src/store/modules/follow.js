@@ -4,18 +4,18 @@ export default {
 
 state: {
   status: false,
-  followerIndex: [],
-  followeeIndex: []
+  followerIndex: null,
+  followeeIndex: null
 },
 mutations: {
   setStatus(state, payload) {
     state.status = payload
   },
   setFollowerIndex(state, payload) {
-    state.status = payload
+    state.followerIndex = payload
   },
   setFolloweeIndex(state, payload) {
-    state.status = payload
+    state.followeeIndex = payload
   }
 },
 actions: {
@@ -38,13 +38,11 @@ actions: {
 
   async followerIndex({commit}, {id}) {
     const res = await axios.get(process.env.VUE_APP_BASE_API+`/api/users/${id}/follower`)
-    console.log(res.data)
     commit('setFollowerIndex', res.data.followers)
   },
 
   async followeeIndex({commit}, {id}) {
     const res = await axios.get(process.env.VUE_APP_BASE_API+`/api/users/${id}/followee`)
-    console.log(res.data.followees)
     commit('setFolloweeIndex', res.data.followees)
   },
 

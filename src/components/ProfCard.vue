@@ -9,7 +9,7 @@
         <v-list-item>
           <v-list-item-avatar>
             <v-img
-              src="udata.image_name.url"
+              :src="udata.img_src"
             />
           </v-list-item-avatar>
           <v-list-item-content>
@@ -26,6 +26,7 @@
 
         <v-card-text>
           {{ udata.profile }}
+          {{ udata }}
         </v-card-text>
 
         <v-card-actions>
@@ -308,7 +309,7 @@
         <v-list-item>
           <v-list-item-avatar>
             <v-img
-              src="https://prtimes.jp/i/22901/578/resize/d22901-578-199927-0.jpg"
+              :src="udata.img_src"
             />
           </v-list-item-avatar>
           <v-list-item-content>
@@ -327,19 +328,19 @@
         <v-card-text>
           {{ udata.profile }}
 
-          <!-- {{ udata }} -->
+          {{ udata }}
         </v-card-text>
 
         <v-card-actions>
           <v-btn
             text
-            @click.native="fo=true; fetchPeople()"
+            @click.native="open1"
           >
             {{ follow_count }} フォロー
           </v-btn>
           <v-btn
             text
-            @click.native="fo=true; fetchPeople()"
+            @click.native="open2"
           >
             {{ follower_count }} フォロワー
           </v-btn>
@@ -347,16 +348,60 @@
           <v-row justify="center">
             <v-dialog v-model="fo" scrollable max-width="80%">
               <v-card>
-                <v-card-title>{{ follower_index }}</v-card-title>
-                <v-divider></v-divider>
-                <v-card-text height="300px">{{ followee_index }}</v-card-text>
+                <!-- <v-tabs
+                  v-model="tab"
+                  centered
+                  class="mb-5"
+                >
+                  <v-tab>
+                    <v-btn
+                      text
+                    >
+                      フォロー
+                    </v-btn>
+                  </v-tab>
+                  <v-tab>
+                    <v-btn
+                      text
+                    >
+                      フォロワー
+                    </v-btn>
+                  </v-tab>
+                </v-tabs> -->
+
+                <v-tabs grow v-model="active_tab">
+                  <v-tab v-for="tab of tabs" :key="tab.id">
+                    {{tab.name}}
+                  </v-tab>
+                </v-tabs>
+
+
+                <v-tabs-items
+                  v-model="active_tab"
+                >
+                  <v-tab-item
+                  >
+                    <p>AAAAAAAAA</p>
+                    {{ followee_index }}
+                  </v-tab-item>
+
+                  <v-tab-item
+                  >
+                    <p>BBBBBBBBBBBBB</p>
+                    {{ follower_index }}
+                  </v-tab-item>
+
+                  <!-- <v-tab-item
+                  >
+                    <p>BBBBBBBBBBBBB</p>
+                    {{ follower_index }}
+                  </v-tab-item> -->
+
+                  
+                </v-tabs-items>
               </v-card>
             </v-dialog>
           </v-row>
-
-          {{ this.$store.state.follow.follower_index }}
-          {{ followee_index }}
-          
         </v-card-actions>
 
         </v-card>
@@ -382,7 +427,14 @@ export default {
       new_password_confirmation: '',
       v0: false,
       fo: false,
-      uploadFile: null
+      uploadFile: null,
+      // tab: '',
+      isActive: '1',
+      active_tab: 0,
+      tabs: [
+        { id: 1, name: 'フォロー' },
+        { id: 2, name: 'フォロワー' }
+      ]
 		}
   },
   computed: {
@@ -406,6 +458,20 @@ export default {
     }
   },
   methods: {
+    open1() {
+      console.log('open')
+      this.fo = true
+      this.active_tab = 0
+      console.log(this.tab)
+    },
+    open2() {
+      this.fo = true
+      this.active_tab = 1
+      console.log(this.tab)
+    },
+    selectTab(num) {
+      this.isActive = num
+    },
     createFollow() {
       var id = this.$route.params['id']
       this.$store.dispatch('createFollow', {id})
@@ -430,50 +496,14 @@ export default {
     },
 
 
-      // selectedFile: function(e) {
-      //           // 選択された File の情報を保存しておく
-      //           e.preventDefault();
-      //           let files = e.target.files;
-      //           this.uploadFile = files[0];
-      //       },
-      //       upload: function() {
-      //           // FormData を利用して File を POST する
-      //           let image_name = new FormData();
-      //           image_name.append('yourFileKey', this.uploadFile);
-      //           this.$store.dispatch('updateUser', {image_name})
-
-      //       },
-
-
-
     async updateUser() {
-      // const image_name = await new FormData()
-      // console.log('avatarrrrrrrrr')
-      // console.log(typeof this.avatar) // string
-      // image_name.append('image', this.avatar)
-      // console.log(typeof image_name)  // object
-      // // let picture = new FormData();
-      // // picture.append('image', this.uploadedImage)
-      // // const image_name = this.getBase64(picture)
-      // // const image_name = this.avatar
-
-
-
-      // const image_name = await new FormData()
-      // image_name.append('image_name', this.avatar)
-
       var name = this.name
-      // var uploadedImage = this.uploadedImage
       var image_name = this.avatar
       var profile = this.profile
       var old_password = this.old_password
       var password = this.new_password
       var password_confirmation = this.new_password_confirmation
       if (!password) {
-        console.log('sending!!!!!!!!!')
-        console.log('sending!!!!!!!!!')
-        console.log('sending!!!!!!!!!')
-        // ここまではできてる
         this.$store.dispatch('updateUser', {
           name,
           image_name,
@@ -489,13 +519,13 @@ export default {
           password_confirmation
         })
       }
-    },
-    fetchPeople() {
-      var id = this.udata.id
-      this.$store.dispatch('followerIndex', {id})
-      this.$store.dispatch('followeeIndex', {id})
-    },
+    }
 
+  },
+
+  created() {
+    this.$store.dispatch('followeeIndex', {id: this.udata.id})
+    this.$store.dispatch('followerIndex', {id: this.udata.id})
   }
 }
 </script>
