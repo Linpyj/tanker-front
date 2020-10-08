@@ -1,13 +1,7 @@
  <template>
   <div>
-    <!-- <div class="mt-5 ml-5">
-      {{ this.$store.state.user.current }}
-    </div>
-    <div class="mt-5 ml-5">
-      {{ this.$store.state.post }}
-    </div> -->
 
-    <prof-card 
+    <prof-card
       :udata="currentUser"
     />
     

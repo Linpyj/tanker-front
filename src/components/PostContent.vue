@@ -29,13 +29,11 @@
                 style="border-radius: 50%"
               />
             </router-link>
-            <!-- {{ item }} -->
             <div>
               <div
                 class="ml-3"
               >
                 {{ item.content }}
-                <!-- {{ item.user_id }} -->
               </div>
               <div>
                 <v-chip
@@ -285,9 +283,6 @@
               <v-icon style="opacity:0.6">mdi-heart</v-icon>
             </v-btn>
             {{ item.likes_count }}
-            <!-- <v-btn icon>
-              <v-icon style="opacity:0.6">mdi-message-text</v-icon>
-            </v-btn> -->
             <v-spacer />
             <v-btn
               text

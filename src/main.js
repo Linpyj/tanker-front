@@ -13,6 +13,7 @@ import VueAxios from 'vue-axios'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 import VueMq from 'vue-mq'
+import firebase from 'firebase/app'
 
 Vue.config.productionTip = false
 
@@ -28,6 +29,19 @@ Vue.use(VueMq, {
 });
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('v-select', vSelect)
+
+var firebaseConfig = {
+  apiKey: "AIzaSyBJ_twiZtgzIucCmMSsV_lpVuCx1BDSwpU",
+  authDomain: "tanker-9adc7.firebaseapp.com",
+  databaseURL: "https://tanker-9adc7.firebaseio.com",
+  projectId: "tanker-9adc7",
+  storageBucket: "tanker-9adc7.appspot.com",
+  messagingSenderId: "324522100548",
+  appId: "1:324522100548:web:5e4adb01fad039073a3911",
+  measurementId: "G-LK3LTW2M2Z"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 // axios.defaults.headers.common['SameSite'] = 'none';
 // axios.defaults.headers.common['Secure'] = true;
