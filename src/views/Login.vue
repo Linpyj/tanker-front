@@ -3,7 +3,7 @@
       <v-row justify="center" v-if="$mq==='pc'">
         <v-col cols="7">
           <h2 class="mt-5 ml-2">ログイン</h2>
-          <div class="mt-2"><b-button block variant="primary" @click="googleLogin">Google ログイン</b-button></div>
+          <div class="mt-2 mb-2"><v-btn color="primary" @click="googleLogin">Google ログイン</v-btn></div>
           <v-card
             class="mx-auto"
           >
