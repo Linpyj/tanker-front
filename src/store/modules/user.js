@@ -47,7 +47,16 @@ actions: {
       )
       sessionStorage.setItem('current', user.data.user)
       commit('setCurrent', user.data.user)
-},
+    },
+
+    async twitterSignin({commit}, {user}) {
+      sessionStorage.clear()
+      sessionStorage.setItem('current', user)
+      commit('setCurrent', user)
+      // const user = await axios.post()
+      
+    },
+
 		signout({commit}) {
       sessionStorage.clear()
       commit('setCurrent', null)

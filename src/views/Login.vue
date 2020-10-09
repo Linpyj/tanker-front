@@ -3,7 +3,7 @@
       <v-row justify="center" v-if="$mq==='pc'">
         <v-col cols="7">
           <h2 class="mt-5 ml-2">ログイン</h2>
-          <div class="mt-2 mb-2"><v-btn color="primary" @click="googleLogin">Google ログイン</v-btn></div>
+          <div class="mt-2 mb-2"><v-btn color="primary" @click="twitterLogin">Twitter ログイン</v-btn></div>
           <v-card
             class="mx-auto"
           >
@@ -67,7 +67,7 @@
       <v-row justify="center" v-if="$mq==='sp'">
         <v-col cols="12">
           <h2 class="mt-5 ml-2">ログイン</h2>
-          <div class="mt-2 mb-2"><v-btn color="primary" @click="googleLogin">Google ログイン</v-btn></div>
+          <div class="mt-2 mb-2"><v-btn color="primary" @click="twitterLogin">Twitter ログイン</v-btn></div>
           <v-card
             class="mx-auto"
           >
@@ -161,11 +161,16 @@ export default {
           this.$router.push('/timeline')
         }
       },
-    googleLogin() {
-      const provider = new firebase.auth.GoogleAuthProvider()
+    twitterLogin() {
+      const provider = new firebase.auth.TwitterAuthProvider()
 
       firebase.auth().signInWithPopup(provider).then(result => {
         console.log(result.user)
+        const user = result.user
+        this.$store.dispatch('twitterSignin', user)
+        // twitterログインしたユーザーをRailsに
+        // CurrentUserとして登録する
+        // this.$store.dispatch('googleSignin')
         this.$router.push('/timeline')
       }).catch(error => {
         console.log(error)
