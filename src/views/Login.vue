@@ -192,7 +192,7 @@ export default {
                 img_src: user.photoURL,
 
               };
-        this.$store.dispatch('googleSignin', user)
+        this.$store.dispatch('googleSignin', currentUser)
         // googleログインしたユーザーをRailsに
         // CurrentUserとして登録する
         // this.$store.dispatch('googleSignin')
