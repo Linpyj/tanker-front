@@ -39,10 +39,10 @@
         />
       </v-tab-item>
       <v-tab-item>
-        <h1>Tab2の内容ですよ</h1>
         <post-content
-          v-for="post in posts" 
+          v-for="post in likePosts" 
           :key="post.id"
+          :item="post"
           class="py-0"
         />
       </v-tab-item>
@@ -67,16 +67,19 @@ export default {
       }
     },
     methods: {
-      fetchMyPosts: function() {
+      fetchMyPosts() {
         this.$store.dispatch('fetchMyPosts', { id: this.$store.state.user.current.id })
       },
-      fetchLikePosts: function() {
-        // likeしたPostsをstateにセットする処理を書く
+      fetchLikePosts() {
+        this.$store.dispatch('fetchLikePosts', { id: this.$store.state.user.current.id })
       }
     },
     computed: {
       posts() {
         return this.$store.state.post.posts
+      },
+      likePosts() {
+        return this.$store.state.post.likePosts
       },
       currentUser() {
         return this.$store.state.user.current
@@ -85,6 +88,7 @@ export default {
     mounted() {
       this.$store.dispatch('fetchUser', {id: this.$store.state.user.current.id })
       this.$store.dispatch('fetchMyPosts', { id: this.$store.state.user.current.id })
+      this.$store.dispatch('fetchLikePosts', { id: this.$store.state.user.current.id })
     }
 
 }
