@@ -29,7 +29,6 @@
 
         <v-card-text>
           {{ udata.profile }}
-          {{ udata }}
         </v-card-text>
 
         <v-card-actions>
@@ -274,8 +273,6 @@
                         ref="currentUser"
                         label="ユーザー名"
                       ></v-text-field>
-                      {{ currentUser.name }}
-                      {{ currentUser.name }}
                       <div class="preview-item">
                         <img :src="avatar" alt="Avatar" class="image">
                         <div>
@@ -351,7 +348,6 @@
             />
           </v-list-item-avatar>
           <v-list-item-content>
-              {{ udata.img_src }}
             <v-list-item-title>
               {{ udata.name }}
             </v-list-item-title>
@@ -366,7 +362,6 @@
         <v-card-text>
           {{ udata.profile }}
 
-          {{ udata }}
         </v-card-text>
 
         <v-card-actions>
