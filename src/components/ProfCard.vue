@@ -8,12 +8,15 @@
         >
         <v-list-item>
           <v-list-item-avatar>
-            <v-img
-              :src="udata.img_src"
-            />
+            <div
+            >
+              <v-img
+                :src="udata.img_src"
+              />
+            </div>
           </v-list-item-avatar>
           <v-list-item-content>
-            
+              {{ udata.img_src }}
             <v-list-item-title>
               {{ udata.name }}
 
@@ -84,123 +87,126 @@
     </v-row>
 
 
-          <v-spacer />
-          <div
-            v-if="udata.id!=currentUser.id"
-          >
+    <v-spacer />
+    <div
+      v-if="udata.id!=currentUser.id"
+    >
+      <v-btn
+        v-if="!isFollowing"
+        color="blue"
+        text
+        @click.native="createFollow"
+      >
+        フォローする
+      </v-btn>
+      <v-btn
+        v-else
+        color="black"
+        text
+        @click.native="removeFollow"
+      >
+        フォローしています
+      </v-btn>
+    </div>
+    <div
+      v-else
+    >
+      <v-row
+        justify="center"
+      >
+        <v-dialog
+          v-model="dialog"
+          width="500"
+          class="mx-auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
             <v-btn
-              v-if="!isFollowing"
               color="blue"
               text
-              @click.native="createFollow"
+              v-bind="attrs"
+              v-on="on"
             >
-              フォローする
+              プロフィールを編集
             </v-btn>
-            <v-btn
-              v-else
-              color="black"
-              text
-              @click.native="removeFollow"
-            >
-              フォローしています
-            </v-btn>
-          </div>
-          <div
-            v-else
-          >
-            <v-row
-              justify="center"
-            >
-              <v-dialog
-                v-model="dialog"
-                width="500"
-                class="mx-auto"
+          </template>
+
+          <v-card>
+            <v-card-title class="headline grey lighten-2">
+              プロフィール編集
+            </v-card-title>
+
+            <v-card-text>
+              <v-form>
+                <v-text-field
+                  v-model="name"
+                  ref="currentUser"
+                  label="ユーザー名"
+                ></v-text-field>
+
+                <div class="preview-item">
+                  <img :src="avatar" alt="Avatar" class="image">
+                  <div>
+                  <input
+                    type="file"
+                    id="avatar_name"
+                    accept="image/jpeg, image/png"
+                    enctype='multipart/form-data'
+                    @change="onImageChange"
+                    />
+                  </div>
+                </div>
+
+                <v-text-field
+                  v-model="profile"
+                  label="自己紹介文"
+                ></v-text-field>
+
+
+                <v-checkbox v-model="v0" label="パスワードを変更"></v-checkbox>
+                <v-banner v-model="v0" single-line transition="slide-y-transition">
+                  <v-text-field
+                    v-model="old_password"
+                    type="password"
+                    label="古いパスワード"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="new_password"
+                    type="password"
+                    label="新しいパスワード"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="new_password_confirmation"
+                    type="password"
+                    label="新しいパスワードを再度入力"
+                  ></v-text-field>
+                </v-banner>
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                v-if="this.name&&(this.avatar||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation))"
+                class="mr-4"
+                text
+                color="blue"
+                @click.native="updateUser"
               >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    color="blue"
-                    text
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    プロフィールを編集
-                  </v-btn>
-                </template>
-
-                <v-card>
-                  <v-card-title class="headline grey lighten-2">
-                    プロフィール編集
-                  </v-card-title>
-
-                  <v-card-text>
-                    <v-form>
-                      <v-text-field
-                        v-model="name"
-                        label="ユーザー名"
-                      ></v-text-field>
-                      <div class="preview-item">
-                        <img :src="avatar" alt="Avatar" class="image">
-                        <div>
-                        <input
-                          type="file"
-                          id="avatar_name"
-                          accept="image/jpeg, image/png"
-                          enctype='multipart/form-data'
-                          @change="onImageChange"
-                          />
-                        </div>
-                      </div>
-                      <v-text-field
-                        v-model="profile"
-                        label="自己紹介文"
-                      ></v-text-field>
-
-
-                      <v-checkbox v-model="v0" label="パスワードを変更"></v-checkbox>
-                      <v-banner v-model="v0" single-line transition="slide-y-transition">
-                        <v-text-field
-                          v-model="old_password"
-                          type="password"
-                          label="古いパスワード"
-                        ></v-text-field>
-                        <v-text-field
-                          v-model="new_password"
-                          type="password"
-                          label="新しいパスワード"
-                        ></v-text-field>
-                        <v-text-field
-                          v-model="new_password_confirmation"
-                          type="password"
-                          label="新しいパスワードを再度入力"
-                        ></v-text-field>
-                      </v-banner>
-                    </v-form>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      v-if="this.name||this.image_name||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation)"
-                      class="mr-4"
-                      text
-                      color="blue"
-                      @click.native="updateUser"
-                    >
-                      編集を完了
-                    </v-btn>
-                    <v-btn
-                      v-else
-                      class="mr-4"
-                      style="pointer-events:none;"
-                      text
-                      color="black"
-                    >
-                      編集を完了
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-            </v-row>
-          </div>
+                編集を完了
+              </v-btn>
+              <v-btn
+                v-else
+                class="mr-4"
+                style="pointer-events:none;"
+                text
+                color="black"
+              >
+                編集を完了
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
+    </div>
 
 
 
@@ -265,10 +271,11 @@
                     <v-form>
                       <v-text-field
                         v-model="name"
+                        ref="currentUser"
                         label="ユーザー名"
                       ></v-text-field>
-
-
+                      {{ currentUser.name }}
+                      {{ currentUser.name }}
                       <div class="preview-item">
                         <img :src="avatar" alt="Avatar" class="image">
                         <div>
@@ -310,7 +317,8 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
-                      v-if="this.name||this.avatar||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation)"
+
+                      v-if="this.name&&(this.avatar||this.profile||(this.old_password&&this.new_password&&this.new_password_confirmation))"
                       class="mr-4"
                       text
                       color="blue"
@@ -339,11 +347,11 @@
         <v-list-item>
           <v-list-item-avatar>
             <v-img
-              :src="udata.img_src"
+             :src="udata.img_src"
             />
           </v-list-item-avatar>
           <v-list-item-content>
-            
+              {{ udata.img_src }}
             <v-list-item-title>
               {{ udata.name }}
             </v-list-item-title>
