@@ -429,7 +429,7 @@ export default {
   },
 	data() {
 		return {
-      dialog: '',
+      dialog: false,
       uploadedImage: '',
       img_name: '',
       name: '',
@@ -514,6 +514,7 @@ export default {
           image_name,
           profile
         })
+        this.dialog = false
       } else {
         this.$store.dispatch('updateUser', {
           name, 
@@ -524,6 +525,7 @@ export default {
           password_confirmation
         })
       }
+      this.dialog = false
     }
 
   },
