@@ -16,7 +16,6 @@
             </div>
           </v-list-item-avatar>
           <v-list-item-content>
-              {{ udata.img_src }}
             <v-list-item-title>
               {{ udata.name }}
 
@@ -143,7 +142,7 @@
                 ></v-text-field>
 
                 <div class="preview-item">
-                  <img :src="avatar" alt="Avatar" class="image">
+                  <img :src="avatar" class="image">
                   <div>
                   <input
                     type="file"
@@ -274,7 +273,7 @@
                         label="ユーザー名"
                       ></v-text-field>
                       <div class="preview-item">
-                        <img :src="avatar" alt="Avatar" class="image">
+                        <img :src="avatar" class="image">
                         <div>
                         <input
                               type="file"
@@ -541,11 +540,10 @@ label > input {
   display: none;
 }
 
-.preview-item-file {
+.image {
   max-height: 300px;
   max-width: 300px;
 }
-
 
 .input-item__label {
   padding: 0 1rem;
