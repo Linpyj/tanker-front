@@ -50,6 +50,15 @@ actions: {
     },
 
     async twitterSignin({commit}, {currentUser}) {
+
+      sessionStorage.clear()
+      sessionStorage.setItem('current', currentUser)
+      commit('setCurrent', currentUser)
+      // const user = await axios.post()
+      
+    },
+
+    async googleSignin({commit}, {currentUser}) {
       sessionStorage.clear()
       sessionStorage.setItem('current', currentUser)
       commit('setCurrent', currentUser)

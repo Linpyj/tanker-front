@@ -184,18 +184,19 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider()
 
       firebase.auth().signInWithPopup(provider).then(result => {
+        const isNewUser = result.additionalUserInfo.isNewUser
+        console.log('result.user')
         console.log(result.user)
-        console.log(result.user.displayName)
-        const user = result.user
-        const currentUser = {
-                name: user.displayName,
-                img_src: user.photoURL,
-
-              };
-        this.$store.dispatch('googleSignin', currentUser)
-        // googleログインしたユーザーをRailsに
-        // CurrentUserとして登録する
-        // this.$store.dispatch('googleSignin')
+        const token = firebase.auth().currentUser.getIdToken(true)
+        console.log(token)
+        this.$store.dispatch('googleSignin', {isNewUser})
+        if (!isNewUser) {
+          console.log('TLへ')
+          this.$router.push('/timeline')
+        } else {
+          console.log('')
+          this.$router.push('/')
+        }
         this.$router.push('/timeline')
       }).catch(error => {
         console.log(error)

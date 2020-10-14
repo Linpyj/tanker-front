@@ -137,7 +137,6 @@
               <v-form>
                 <v-text-field
                   v-model="name"
-                  ref="currentUser"
                   label="ユーザー名"
                 ></v-text-field>
 
@@ -525,7 +524,7 @@ export default {
           password_confirmation
         })
       }
-      this.dialog = false
+        this.dialog = false
     }
 
   },
