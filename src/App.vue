@@ -79,7 +79,9 @@
       class="pt-5 pb-5 mt-10"
       text-xs-center
     >
-      <div>&copy; 2020 - {{ new Date().getFullYear() }} Tanker</div>
+      <div style="text-align:center; margin:0 auto;">
+        <span>&copy; 2020 - {{ new Date().getFullYear() }} Tanker</span>
+      </div>
   </v-footer>
   </v-app>
 </template>
