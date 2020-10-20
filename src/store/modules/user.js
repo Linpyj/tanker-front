@@ -58,9 +58,16 @@ actions: {
       
     },
 
-    async googleSignin({commit}, {currentUser}) {
+    async googleSignin({commit}, {isNewUser}) {
       sessionStorage.clear()
-      sessionStorage.setItem('current', currentUser)
+      if (!isNewUser) {
+        // アカウント作成済の場合、Tokenと紐づいたTankerアカでログイン
+
+      } else {
+        // アカウント未作成の場合、Tokenを持たせたTankerアカを新規作成
+
+      }
+      // sessionStorage.setItem('current', currentUser)
       commit('setCurrent', currentUser)
       // const user = await axios.post()
       
@@ -92,8 +99,8 @@ actions: {
       commit('setThisUserFollowCount', user.data.follow_count)
     },
 
-    async updateUser({state, commit}, {name, 
-      image_name, 
+    async updateUser({state, commit}, {name,
+      image_name,
       profile,
       old_password,
       new_password,

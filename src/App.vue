@@ -71,7 +71,16 @@
         </v-list>
       </v-navigation-drawer>
     </header>
-    <router-view class="mt-10" />
+    <router-view class="mt-10 mb-10 pb-10" />
+    <v-footer
+      app
+      color="indigo"
+      dark
+      class="pt-5 pb-5 mt-10"
+      text-xs-center
+    >
+      <div>&copy; 2020 - {{ new Date().getFullYear() }} Tanker</div>
+  </v-footer>
   </v-app>
 </template>
 
